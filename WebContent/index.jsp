@@ -1,20 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" 
+contentType="text/html; charset=ISO-8859-1"
+pageEncoding="ISO-8859-1"
+%>
+<%@ include file="accessJDBC.jsp" %>
+
 <!DOCTYPE html>
-<head><title>First JSP</title></head>
-<body>
-  <%
-    double num = Math.random();
-    if (num > 0.95) {
-  %>
-      <h2>You'll have a luck day!</h2><p>(<%= num %>)</p>
-  <%
-    } else {
-  %>
-      <h2>Well, life goes on ... </h2><p>(<%= num %>)</p>
-  <%
-    }
-  %>
-  <a href="<%= request.getRequestURI() %>"><h3>Try Again</h3></a>
-</body>
+<html>
+   <head>
+   <% 
+   %>
+      <title>Using GET Method to Read Form Data</title>
+   </head>
+   
+   <body>
+      <h1>Using GET Method to Read Form Data</h1>
+      <ul>
+         <li><p><b>First Name:</b>
+            <%= request.getAttribute("first_name")%>
+         </p></li>
+         <li><p><b>Last  Name:</b>
+            <%= request.getAttribute("last_name")%>
+         </p></li>
+      </ul>
+   
+   </body>
 </html>
