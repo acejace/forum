@@ -17,9 +17,9 @@ forum.accessJDBC
 	//app.createDatabaseTables("/ddl/tables.ddl");
 	
 	//app.registerUser("fadmin@laizone.net", "temp", "Admin", "Forum");
-	int uid = app.getUserId("acejace@hotmail.com");
-	app.updateUserFirstName(uid, "JaCe");
-	System.out.println(app.listAllUsers());
+	//int uid = app.getUserId("acejace@hotmail.com");
+	//app.updateUserFirstName(uid, "JaCe");
+	//System.out.println(app.listAllUsers());
 	app.close(); //remove close later.
 %>
 

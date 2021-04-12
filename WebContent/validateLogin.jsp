@@ -2,19 +2,18 @@
     pageEncoding="ISO-8859-1"
 %>
 <%@ include file="accessJDBC.jsp" %>
-<%!
-	String validateLogin(JspWriter out,HttpServletRequest request, HttpSession session) throws IOException
-	{
+<%
+
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		accessJDBC app = (accessJDBC) session.getAttribute("app"); 
+		app = (accessJDBC) session.getAttribute("app"); 
 		username = username.toLowerCase();
 		String retStr = null;
 
 		if(username == null || password == null)
-				return null;
+				//return null;
 		if((username.length() == 0) || (password.length() == 0))
-				return null;
+				//return null;
 
 
 		try 
@@ -54,6 +53,6 @@
 		else
 			session.setAttribute("loginMessage","Could not connect to the system using that username/password.");
 
-		return retStr;
-	}
+		//return retStr;
+	
 %>
