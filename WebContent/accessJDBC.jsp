@@ -12,20 +12,7 @@ forum.accessJDBC
 <%
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	accessJDBC app = new accessJDBC();
-	session.setAttribute("app", app);
 	app.connect();
-	//app.createDatabaseTables("/ddl/tables.ddl");
-	
-	//app.registerUser("fadmin@laizone.net", "temp", "Admin", "Forum");
-	//int uid = app.getUserId("acejace@hotmail.com");
-	//app.updateUserFirstName(uid, "JaCe");
-	//System.out.println(app.listAllUsers());
-	app.close(); //remove close later.
+	session.setAttribute("app", app);
 %>
 
-8
-
-<html>
-<head><title>Absolute Path</title></head>
-<% //System.out.println("Working Directory = " + System.getProperty("user.dir")); %> 
-</html>

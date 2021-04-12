@@ -1,6 +1,6 @@
 <%@ page language="java"%>
-<%@ include file="accessJDBC.jsp" %>
-<!DOCTYPE html>
+
+<!DOCTYPE jsp>
 
 <html>
 <head>
