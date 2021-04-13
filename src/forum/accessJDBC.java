@@ -9,20 +9,25 @@ public class accessJDBC {
 	 * Connection to database
 	 */
 	private Connection con;
+	private boolean connected = false;
 	private String url,uid,pw;
 	
 	
 	public Connection connect() throws SQLException {
-		
-		url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
-		
-		uid = "laizonen_fadmin";
-		pw = "FoRuMlOgInAdMiN360";
-
-		System.out.println("Connecting to database.");
-		// Note: Must assign connection to instance variable as well as returning it
-		// back to the caller
-		con = DriverManager.getConnection(url, uid, pw);
+		if (connected == false) {
+			url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
+			
+			uid = "laizonen_fadmin";
+			pw = "FoRuMlOgInAdMiN360";
+	
+			System.out.println("Connecting to database.");
+			// Note: Must assign connection to instance variable as well as returning it
+			// back to the caller
+			con = DriverManager.getConnection(url, uid, pw);
+			connected = true;
+			return con;
+		}
+		System.out.println("Already connected to database.");
 		return con;
 	}
 	/**
@@ -31,8 +36,10 @@ public class accessJDBC {
 	public void close() {
 		System.out.println("Closing database connection.");
 		try {
-			if (con != null)
+			if (con != null) {
 				con.close();
+				connected = false;
+			}
 		} catch (SQLException e) {
 			System.out.println(e);
 		}
@@ -97,6 +104,7 @@ public class accessJDBC {
 		}
 		return output.toString();
 	}
+	
 	
 	/***
 	 * Checks if email already exists in database.
@@ -189,6 +197,33 @@ public class accessJDBC {
 		ResultSet rs = stmt.executeQuery(query);
 		rs.next();
 		return rs.getInt("id");
+	}
+	
+	private String getUserPassword(String email) throws SQLException {
+		String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		rs.next();
+		return rs.getString("password");
+	}
+	public String getUserFirstName(String email) throws SQLException {
+		
+		String query = String.format("SELECT first_name FROM Users WHERE email = '%s'", email.toLowerCase());
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		rs.next();
+		String temp = rs.getString("first_name");
+		String capitlizedFirstLetter = temp.substring(0, 1).toUpperCase() + temp.substring(1);
+		return capitlizedFirstLetter;
+	}
+	public String getUserLastName(String email) throws SQLException {
+		String query = String.format("SELECT last_name FROM Users WHERE email = '%s'", email.toLowerCase());
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		rs.next();
+		String temp = rs.getString("last_name");
+		String capitlizedFirstLetter = temp.substring(0, 1).toUpperCase() + temp.substring(1);
+		return capitlizedFirstLetter;
 	}
 	
 	

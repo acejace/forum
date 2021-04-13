@@ -15,8 +15,23 @@ function validateInputs(inputs){
 		}
 	}
 	if (missing) {
-		document.getElementById("invalid").innerHTML = missinginputs;
+		console.log(missinginputs);
+		document.getElementsByClassName("invalidInput")[0].innerHTML = missinginputs;
 		return false;
 	}
 	return true;;
+}
+
+function submitted() {
+	var form = document.getElementsByClassName("form")[0];
+	var inputs = form.getElementsByTagName("input");
+	
+	return validateInputs(inputs)
+}
+
+function loginSubmit() {
+	var form = document.getElementById("signup");
+	var inputs = form.getElementsByTagName("input");
+	
+	return validateInputs(inputs)
 }

@@ -1,31 +1,24 @@
 <%@ page language="java" %>
 <%@ include file="accessJDBC.jsp" %>
-<!DOCTYPE html>
-
-<html>
-<head>
-<title>
-test</title>
-</head>
-<body>
-
-		<%
+<%
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
 		String first_name = request.getParameter("first_name").trim();
 		String last_name = request.getParameter("last_name").trim();
 		
-		app.registerUser(email,password,first_name, last_name);
-		%>
 
-<script src="js/index.js" type="text/javascript">
-</script>
-</html>
+		
+		//if successfully registered then
+		if (app.registerUser(email,password,first_name, last_name)){
+			session.setAttribute("email", email);
+			session.setAttribute("first_name", first_name);
+			session.setAttribute("last_name",  last_name);
+			session.setAttribute("loggedIn", true);
+			response.sendRedirect("successfulRegistration.jsp");
+			app.close(); 
+		}else{
+			app.close(); 
+			response.sendRedirect("emailExists.jsp");
+		}
+%>
 
-
-
-</body>
-<script src="js/index.js" type="text/javascript">
-</script>
-<% app.close(); %>
-</html>

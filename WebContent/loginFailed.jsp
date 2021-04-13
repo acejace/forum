@@ -1,29 +1,24 @@
 <%@ page language="java"%>
 <%@ include file="accessJDBC.jsp" %>
-<!DOCTYPE jsp>
+<!DOCTYPE JSP>
 
 <html>
 <head>
 <title>
-test</title>
+Login
+</title>
 </head>
 <body>
-	<form class="form" onsubmit="return submitted()" action="validateSignup.jsp">
+	<form class="form" onsubmit="return submitted()" action="validateLogin.jsp">
 		Email : <input type="email" name="email" id = "email" value=""> 
 		Password: <input type="text" name="password" value=""> 
-		First Name : <input type="text"	name="first_name" value=""> 
-		Last Name: <input type="text" name="last_name" value="">		
-		
-		 <button type="submit">Sign Up</button>
+		 <button type="submit">Login</button>
 		 <button type="reset" value="reset" >Reset Form</button>
-		 
+		 <p class="invalidInput"> No found matching email and password. Please try again or create a new account.</p>
 	</form>
-	<p class="invalidInput"> </p>
 </body>
-
 
 
 <script src="js/index.js" type="text/javascript">
 </script>
-
 </html>
