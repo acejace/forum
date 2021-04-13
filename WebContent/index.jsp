@@ -53,26 +53,12 @@
 			<div class="subtitle">
 				<p style="color: white;">Login Page</p>
 			</div>
-		
-			<table id="userprofile">
+			<!-- this is where posts start -->
+			<table id="recentPosts" class="viewPosts">
 				<tr>
 					<th>Profile Picture: </th>
 					<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
 					<td><a href="google.com"><button value="img_profile_link" class="editBtn">Edit</button></a></td>
-				</tr>
-				<tr>
-					<th>First Name: </th> 
-					<td><%=session.getAttribute("first_name")%> </td> 
-					<td><button value="first_name" class="editBtn">Edit</button></td>
-				<tr>
-					<th>Last Name: </th> 
-					<td><%=session.getAttribute("last_name")%> </td>
-					 <td><button value="last_name" class="editBtn">Edit</button>
-				</td>
-				<tr>
-					<th>Email: </th>
-					<td><%=session.getAttribute("email")%> </td>
-					<td><button value="email" class="editBtn">Edit</button></td>
 				</tr>
 			</table>
 		</div>
