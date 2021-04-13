@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ include file="accessJDBC.jsp"%>
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>Forum Home Page</title>
+
 <link rel="icon" href="/images/logos/logo-laizone1.png" type="image/icon type">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet" />
@@ -52,13 +54,52 @@
 					style="max-height: 30vh; max-width: 40%;"> </a>
 			</div>
 			<div class="subtitle">
-				<p style="color: white;">Login Page</p>
+				<p style="color: white;">The anonymous forum</p>
 			</div>
 			<!-- this is where posts start -->
-			<table id="recentPosts" class="viewPosts">
+			
+			<div class="post" style="font-size: 1vw; text-align: left; padding: 0px;">
+				<h1> Displaying the 25 most recent posts</h1>
+			</div>
+			<table id="recentPosts" class="viewPosts center">
+			<tr>
+				<th> Author ID </th>
+				<th> Upvotes </th>
+				<th> Title </th>
+				<th> Date Posted </th>
+			</tr>
+			
+			
+			<%
+			ResultSet rs = app.getRecentPosts(10);
+			int userId;
+			int postId;
+			int postUpvotes;
+			String postName;
+			String posted_at;
+			String postLink;
+			
+			while (rs.next()){
+				userId = rs.getInt("userId");
+				postId = rs.getInt("postId");
+				postLink = "viewPost.jsp?post_id="+postId;
+				postUpvotes = rs.getInt("postUpvotes");
+				postName = rs.getString("post_name");
+				posted_at = rs.getString("posted_at");
+				%>
 				<tr>
+					<td> <%=userId%></td>
+					<td> <%=postUpvotes%> </td>
+					<td class="clickable"><a href='<%=postLink%>'> <div><%=postName%></div></a>
 					
+					</td>
+					<td> <%=posted_at%> </td>
 				</tr>
+				
+				<%
+			}
+			
+			%>
 			</table>
 		</div>
 	</div>

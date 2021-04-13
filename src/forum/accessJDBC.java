@@ -417,6 +417,22 @@ public class accessJDBC {
 	}
 	
 	/**
+	 * Returns result set of all posts ordered by upvotes. Comments are not included.
+	 * @return
+	 */
+	public ResultSet getTopPosts() {
+		try {
+			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	/**
 	 * Returns result set of number of recent posts. Comments are not included.
 	 * @return
 	 */
@@ -433,6 +449,28 @@ public class accessJDBC {
 		}
 	}
 	
+	/**
+	 * Returns result set of number of top posts. Comments are not included.
+	 * @return
+	 */
+	public ResultSet getTopPosts(int limit) {
+		try {
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes DESC LIMIT %d", limit);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	} 
+	/**
+	 * Returns result set of number of most recent posts. Comments are not included.
+	 * @return
+	 * @param post_id
+	 * @return
+	 */
 	public ResultSet getPost(int post_id) {
 		try {
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE postId = %d", post_id);
@@ -484,10 +522,12 @@ public class accessJDBC {
 		
 		ResultSet rs =app.getPost(1);
 		rs.next();
+		int userId = rs.getInt("userId");
 		int postid = rs.getInt("postId");
 		int postUpvotes = rs.getInt("postUpvotes");
 		String postName = rs.getString("post_name");
 		String content = rs.getString("content");
+		String date = rs.getString("posted_at");
 		
 		System.out.println("Post ID: \t" + postid);
 		System.out.println("Post Upvotes: \t" + postUpvotes);
