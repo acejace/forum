@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ include file="accessJDBC.jsp" %>
 <!DOCTYPE html>
 
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Forum Home Page</title>
+<title>View Post</title>
 <link rel="icon" href="/images/logos/logo-laizone1.png" type="image/icon type">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet" />
@@ -51,15 +52,28 @@
 					src="https://laizone.net/images/logos/logo-laizone1.png"
 					style="max-height: 30vh; max-width: 40%;"> </a>
 			</div>
-			<div class="subtitle">
-				<p style="color: white;">Login Page</p>
-			</div>
+		
 			<!-- this is where posts start -->
-			<table id="recentPosts" class="viewPosts">
-				<tr>
-					
-				</tr>
-			</table>
+			<%	
+			
+			int post_id = Integer.parseInt(request.getParameter("post_id"));	
+			ResultSet rs = app.getPost(post_id);
+			rs.next();
+			int postUpvotes = rs.getInt("postUpvotes");
+			String postName = rs.getString("post_name");
+			String content = rs.getString("content");
+			%>
+			<div class="post">
+				<div id="mainPost">
+					<h1><%=postName %></h1>
+					<div>
+						<%=content %>
+					</div>
+				</div>
+				<div id="postComments">
+				</div>
+				
+			</div>
 		</div>
 	</div>
 </body>

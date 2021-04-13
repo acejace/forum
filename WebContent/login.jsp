@@ -20,7 +20,8 @@
 	<div class="animated slideInDown header" style="animation-delay: 1.8s;">
 		<div class="navbar">
 			<a href="login.jsp">login</a> <a href="signup.jsp"
-				style="margin: 0px 2vw;">sign up</a> <a href="#contact">contact</a>
+				style="margin: 0px 2vw;">sign up</a> 
+			<a href="index.jsp">home</a>
 		</div>
 		<div class="title">
 			<a href="https://laizone.net/"><img

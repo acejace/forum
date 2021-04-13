@@ -432,6 +432,19 @@ public class accessJDBC {
 			return null;
 		}
 	}
+	
+	public ResultSet getPost(int post_id) {
+		try {
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE postId = %d", post_id);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
 	/***
 	 * Returns true if email and password match results in database.
 	 * @param email
@@ -455,9 +468,9 @@ public class accessJDBC {
 		accessJDBC app = new accessJDBC();
 		app.connect();
 		//app.createPost("fadmin@laizone.net", "Test post 2" , "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
-		ResultSet rs = app.getAllPosts();
-		while(rs.next()) {
-			int postid = rs.getInt("postId");
+
+		/**
+		 * int postid = rs.getInt("postId");
 			int postUpvotes = rs.getInt("postUpvotes");
 			String postName = rs.getString("post_name");
 			String content = rs.getString("content");
@@ -466,8 +479,21 @@ public class accessJDBC {
 			System.out.println("Post Upvotes: \t" + postUpvotes);
 			System.out.println("Post Name: \t" + postName);
 			System.out.println("Content: \t" + content);
-		}
 		
+		 */
+		
+		ResultSet rs =app.getPost(1);
+		rs.next();
+		int postid = rs.getInt("postId");
+		int postUpvotes = rs.getInt("postUpvotes");
+		String postName = rs.getString("post_name");
+		String content = rs.getString("content");
+		
+		System.out.println("Post ID: \t" + postid);
+		System.out.println("Post Upvotes: \t" + postUpvotes);
+		System.out.println("Post Name: \t" + postName);
+		System.out.println("Content: \t" + content);
+	
 		app.close();
 		
 	}

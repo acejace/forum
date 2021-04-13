@@ -69,25 +69,14 @@ body,html {
     font-family: 'Comfortaa', cursive;
 }
 
-#middle {
-    width:100%;
-    height:80vh;
-    background:linear-gradient(0deg,rgba(0,0,0,1),rgba(0,0,0,0)),url("https://laizone.net/images/bg.jpg") center center fixed;
-    background-size:100% auto;
-    background-repeat:no-repeat;
-    color:white;
-    display:flex;
-    justify-content:center;
-    flex-direction:column;
-    transition:1s ease-in-out;
-    padding-top:25vw;
-}
+
 .tagline {
     font-size:2vw;
 }
 .post {
     width:80%;
     padding:2% 10%;
+    background: 
 }
 .post div h1 {
     font-size:40px;
@@ -102,18 +91,19 @@ body,html {
     animation: Gradient 20s ease infinite;
     font-family: 'Comfortaa', cursive;
 }
-#skills {
+#mainPost {
     margin:4vh 0px !important;
-    padding:2vh 0px !important;
+    padding:2vh 1vw !important;
+    padding-left: 1%;
+    text-align: left;
+    font-size: 1vw;
+    background: rgba(0, 0, 0, 0.7);
 }
-#work {
+.post .comment{
     margin:4vh 0px !important;
-    padding:2vh 0px !important;
+    padding:2vh 1.5vw !important;
 }
-#contact {
-    margin:4vh 0px !important;
-    padding:2vh 0px !important;
-}
+
 .form {
     width:100%;
 }
