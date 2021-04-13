@@ -7,6 +7,8 @@
 <title>Successful Registration!</title>
 </head>
 <body>
+
+<img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'>
 <p> Congratulations, 
 <%=session.getAttribute("first_name")%> your account has been successfully created. <br>
 Your login is :

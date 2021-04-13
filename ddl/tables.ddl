@@ -5,6 +5,7 @@ CREATE TABLE Users (
   last_name     VARCHAR(255),
   first_name    VARCHAR(255),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  img_profile_link VARCHAR(255),
     PRIMARY KEY (id)
 );
 

@@ -73,7 +73,7 @@ public class accessJDBC {
 		if (scanner != null)
 			scanner.close();
 
-		System.out.println("Data successfully loaded.");
+		//System.out.println("Data successfully loaded.");
 	}
 	
 	/**
@@ -126,7 +126,7 @@ public class accessJDBC {
 	}
 	
 	/***
-	 * Registers user into the database. 
+	 * Registers user into the database. id and date created are automatically initialized.
 	 * @param email
 	 * @param password
 	 * @param last_name
@@ -136,17 +136,19 @@ public class accessJDBC {
 	public boolean registerUser(String email, String password, String last_name, String first_name){
 		try {
 			if (checkEmail(email)) {
-				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name) VALUES ('%s','%s','%s','%s')",
+				String imgUrl = "https://laizone.net/images/logos/logo-laizone1.png";
+				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, imgUrl) VALUES ('%s','%s','%s','%s''%s')",
 						email.toLowerCase(),
 						password,
 						last_name.toLowerCase(),
-						first_name.toLowerCase());
+						first_name.toLowerCase(),
+						imgUrl);
 				PreparedStatement pstmt = con.prepareStatement(insert);
 				pstmt.execute();
-				System.out.println("Account created successfully");
+				//System.out.println("Account created successfully");
 				return true;
 			}
-			System.out.println("Email already exists");
+			//System.out.println("Email already exists");
 			return false;
 		}  catch (SQLException e) {
 			System.out.println(e);
@@ -161,7 +163,7 @@ public class accessJDBC {
 			String update = String.format("UPDATE Users SET %s='%s' WHERE id=%s", field, newValue, id);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
-			System.out.println("User successfully updated");
+			//System.out.println("User successfully updated");
 			return true;
 		} catch (SQLException e) {
 			System.out.println(e);
@@ -170,7 +172,7 @@ public class accessJDBC {
 	}
 	
 	/***
-	 * Updates the users first name from id.
+	 * Updates the users first name from id.Returns true if successful and false if failed. 
 	 * @param id
 	 * @param newFirstName
 	 * @return 
@@ -179,18 +181,42 @@ public class accessJDBC {
 		return updateUser(id, "first_name", newFirstName.toLowerCase());
 	}
 	
+	/***
+	 * Updates the users last name from id.Returns true if successful and false if failed. 
+	 * @param id
+	 * @param newFirstName
+	 * @return 
+	 */
 	public boolean updateUserLasttName(int id, String newLastName) {
 		return updateUser(id, "last_name", newLastName.toLowerCase());
 	}
+	
+	/***
+	 * Updates the email first name from id. Returns true if successful and false if failed. 
+	 * @param id
+	 * @param newFirstName
+	 * @return 
+	 */
 	public boolean updateUserEmail(int id, String newEmail) {
 		if (checkEmail(newEmail)) return updateUser(id, "email", newEmail);
 		return false;
 	}
+	/***
+	 * Updates the password from id. Returns true if successful and false if failed. 
+	 * @param id
+	 * @param newFirstName
+	 * @return 
+	 */
 	public boolean updateUserPassword(int id, String newPassword) {
 		return updateUser(id, "password", newPassword);
 	}
 	
-	// Returns User id from email.
+	/***
+	 * Gets User's id from email.
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public int getUserId(String email) throws SQLException {
 		String query = String.format("SELECT id FROM Users WHERE email = '%s'", email.toLowerCase());
 		Statement stmt = con.createStatement();
@@ -198,14 +224,13 @@ public class accessJDBC {
 		rs.next();
 		return rs.getInt("id");
 	}
+	/***
+	 * Returns User's First Name from email.
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	
-	private String getUserPassword(String email) throws SQLException {
-		String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		rs.next();
-		return rs.getString("password");
-	}
 	public String getUserFirstName(String email) throws SQLException {
 		
 		String query = String.format("SELECT first_name FROM Users WHERE email = '%s'", email.toLowerCase());
@@ -216,6 +241,14 @@ public class accessJDBC {
 		String capitlizedFirstLetter = temp.substring(0, 1).toUpperCase() + temp.substring(1);
 		return capitlizedFirstLetter;
 	}
+	
+	
+	/***
+	 * Returns User's Last Name from email.
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
 	public String getUserLastName(String email) throws SQLException {
 		String query = String.format("SELECT last_name FROM Users WHERE email = '%s'", email.toLowerCase());
 		Statement stmt = con.createStatement();
@@ -226,29 +259,54 @@ public class accessJDBC {
 		return capitlizedFirstLetter;
 	}
 	
-	
-	public boolean validateLogin(String email, String password) throws SQLException {
-		String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
-		PreparedStatement pstmt = con.prepareStatement(query);
-		ResultSet rs = pstmt.executeQuery();
+	/***
+	 * Returns User's Last Name from email.
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getUserImg(String email) throws SQLException {
+		
+		String query = String.format("SELECT img_profile_link FROM Users WHERE email = '%s'", email.toLowerCase());
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
 		rs.next();
-		if (rs.getString("password").equals(password)) return true;
-		
-		return false;
-		
+		String temp = rs.getString("img_profile_link");
+		return temp;
 		
 	}
-	public static void main(String[] args) throws SQLException, ParseException {
-		accessJDBC app = new accessJDBC();
+	/***
+	 * Returns imgURL from id.
+	 * @param email
+	 * @return
+	 * @throws SQLException
+	 */
+	public String getUserImg(int id) throws SQLException {
 		
-		app.connect();
-		app.createDatabaseTables("ddl/tables.ddl");
+		String query = String.format("SELECT img_profile_link FROM Users WHERE id = %d", id);
+		Statement stmt = con.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		rs.next();
+		String temp = rs.getString("img_profile_link");
+		return temp;
+	}
+	/***
+	 * Returns true if email and password match results in database.
+	 * @param email
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 */
+	public boolean validateLogin(String email, String password) throws SQLException {
+	String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
+	PreparedStatement pstmt = con.prepareStatement(query);
+	ResultSet rs = pstmt.executeQuery();
+	rs.next();
+	if (rs.getString("password").equals(password)) return true;
+	
+	return false;
 		
 		
-		//app.registerUser("acejace@hotmail.com", "test", "Lai", "FirstName");
-		
-		//System.out.println(app.listAllUsers());
-		app.close();
 	}
 	
 }

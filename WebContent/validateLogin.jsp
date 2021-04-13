@@ -10,12 +10,14 @@
 			session.setAttribute("email", email);
 			session.setAttribute("first_name", app.getUserFirstName(email));
 			session.setAttribute("last_name",  app.getUserLastName(email));
+			session.setAttribute("img_profile_link",  app.getUserImg(email));
 			session.setAttribute("loggedIn", true);
+			session.setAttribute("loginFailed", null);
 			response.sendRedirect("successfulLogin.jsp");
-			app.close(); 
 		}else{
 			app.close(); 
-			response.sendRedirect("loginFailed.jsp");
+			session.setAttribute("loginFailed","Login failed, please try again");
+			response.sendRedirect("login.jsp");	}%>
 		}
 %>
 

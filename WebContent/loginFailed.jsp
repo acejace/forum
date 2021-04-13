@@ -17,8 +17,6 @@ Login
 		 <p class="invalidInput"> No found matching email and password. Please try again or create a new account.</p>
 	</form>
 </body>
-
-
 <script src="js/index.js" type="text/javascript">
 </script>
 </html>

@@ -13,6 +13,7 @@
 			session.setAttribute("email", email);
 			session.setAttribute("first_name", first_name);
 			session.setAttribute("last_name",  last_name);
+			session.setAttribute("img_profile_link",  app.getUserImg(email));
 			session.setAttribute("loggedIn", true);
 			response.sendRedirect("successfulRegistration.jsp");
 			app.close(); 
