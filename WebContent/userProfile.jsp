@@ -26,22 +26,23 @@
 <div class="main">
 
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;">
-			<div class="navbar">
 			
 			<div class="userNameCorner">Welcome 
 			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>
 			</div>
-				<a href="userProfile.jsp">my profile</a> 
-				<a href="userPosts.jsp"style="margin: 0px 2vw;">my posts</a> 
-				<a href="index.jsp">home</a>	
+			<div class="navbar">
+			<a href="userProfile.jsp"><%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>'s profile</a> 
+			<a href="createPost.jsp"style="margin: 0px 2vw;">create post</a> 
+			<a href="index.jsp">home</a>	
 			</div>
+			  
 			<div class="title">
 				<a href="https://laizone.net/"><img
 					src="https://laizone.net/images/logos/logo-laizone1.png"
 					style="max-height: 30vh; max-width: 40%;"> </a>
 			</div>
 			<div class="subtitle">
-				<p style="color: white;">Your Details</p>
+				<p style="color: white;">Create Your Post</p>
 			</div>
 		
 			<table id="userprofile">

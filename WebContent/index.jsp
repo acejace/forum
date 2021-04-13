@@ -37,8 +37,8 @@
 			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>
 			</div>
 			<div class="navbar">
-			<a href="userProfile.jsp"><%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>'s profile</a> 
-			<a href="signup.jsp"style="margin: 0px 2vw;">sign up</a> 
+			<a href="userProfile.jsp">my profile</a> 
+			<a href="createPost.jsp"style="margin: 0px 2vw;">create post</a> 
 			<a href="index.jsp">home</a>	
 			</div>
 		<%	
@@ -56,9 +56,7 @@
 			<!-- this is where posts start -->
 			<table id="recentPosts" class="viewPosts">
 				<tr>
-					<th>Profile Picture: </th>
-					<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
-					<td><a href="google.com"><button value="img_profile_link" class="editBtn">Edit</button></a></td>
+					
 				</tr>
 			</table>
 		</div>

@@ -25,12 +25,13 @@
 	</div>
 
 	<div class="main">
-		<div class="animated slideInDown header"
-			style="animation-delay: 1.8s;">
+		<div class="userNameCorner">Welcome 
+			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>
+			</div>
 			<div class="navbar">
-				<a href="userProfile.jsp"><%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>'s profile</a> 
-				<a href="userPosts.jsp"style="margin: 0px 2vw;">my posts</a> 
-				<a href="index.jsp">home</a>	
+			<a href="userProfile.jsp">my profile</a> 
+			<a href="myPosts.jsp"style="margin: 0px 2vw;">my posts</a> 
+			<a href="index.jsp">home</a>	
 			</div>
 			<div class="title">
 				<a href="https://laizone.net/"><img
@@ -47,7 +48,6 @@
 				you have successfully logged in <br>
 			</p>
 		</div>
-	</div>
 
 </body>
 <script src="js/index.js" type="text/javascript"></script>

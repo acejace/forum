@@ -244,6 +244,9 @@ body,html {
 	margin: 1% 0 1%  0;
 	font-size: 1.5vw;
 }
+.inputBox[type="text"]{
+	font-size: 1.5vw;
+}
 
 .main{
 	text-align: center;

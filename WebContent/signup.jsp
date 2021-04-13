@@ -37,7 +37,7 @@ Sign Up
 			Email : <input type="email" name="email" id="email" value="">
 		</div>
 		<div class="inputBox">
-			Password: <input type="text" name="password" value=""> 
+			Password: <input type="password" name="password" value=""> 
 		</div>
 		<div class="inputBox">
 			First Name : <input type="text"	name="first_name" value=""> 
