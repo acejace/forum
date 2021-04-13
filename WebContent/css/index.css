@@ -144,11 +144,11 @@ body,html {
 }
 
 
-#recentPosts tbody tr td, #recentPosts tbody tr th{
+.posts tbody tr td, .posts tbody tr th{
 	border-right: 2px solid white;
 	border-bottom: 2px solid white;
 }
-#recentPosts tbody tr{
+.posts tbody tr{
 	height: 3.0vw;
 }
 
@@ -162,7 +162,10 @@ body,html {
 ::placeholder {
     color:#fff;
 }
-
+.buttonHeader {
+	margin: 2vw 0;
+	width: 100%;
+}
 .viewPosts{
 	margin: 0 auto;
 	width: 100%;
@@ -303,6 +306,9 @@ body,html {
 	font-size: 1vw;
 }
 
+.hidden {
+	display: none;
+}
 
 
 @media (max-width: 900px){

@@ -37,6 +37,23 @@ function loginSubmit() {
 	return validateInputs(inputs)
 }
 
+function hideTable(){
+	var button =$("#showPostOrder");
+	var elementTop = document.getElementById("top");
+	var elementRecent = document.getElementById("recent");
+	
+	if (button.value =="top"){
+		elementTop.classList.remove("hidden");
+		elementRecent.classList.add("hidden");
+		button.value ="recent";
+	} else{
+		elementTop.classList.add("hidden");
+		elementRecent.classList.remove("hidden");
+		button.value ="top";
+	}
+	
+}
+
 $(document).ready(function(){
 	$("a").on('click', function(event) {
         if (this.hash !== "") {
