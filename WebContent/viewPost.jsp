@@ -46,12 +46,17 @@ session.setAttribute("subtitle", "currently viewing post");
 				</div>
 			</div>
 			
-			<% if (session.getAttribute("loggedIn")!=null) { %>
-
+			<% if (session.getAttribute("loggedIn")!=null) {
+			 		if (request.getAttribute("comment_failed") == "true") {
+			%>
+					<p class="invalidInput"> Failed to comment, please try again.</p>
+			<% }else{ 
+				
+			%>
 			<div class="createComment">
 				<form class="form" onsubmit="return submitted()"
-					action="validatePost.jsp">
-						<input type="hidden" value='<%=post_id %>'>
+					action="validateComment.jsp">
+						<input type="hidden" name="post_id" value='<%=post_id%>'>
 					<div class="inputBox">comment:</div>
 					<div class="inputBox">
 						<textarea name="content" style="width: 80%"></textarea>
@@ -62,7 +67,12 @@ session.setAttribute("subtitle", "currently viewing post");
 
 				</form>
 			</div>
-			<%} %>
+				<%}
+			 		request.setAttribute("comment_failed", null);
+	}%>
+			<div>
+				<button class="btn_two" id="showHideAllCommentsButton"> Show Comments</button>
+			</div>
 			<div id="loadComments"> </div>
 			
 	

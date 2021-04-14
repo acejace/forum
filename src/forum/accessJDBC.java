@@ -143,7 +143,7 @@ public class accessJDBC {
 		try {
 			if (checkEmail(email)) {
 				//INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ("ttttte@hotmail.com", "test", "Jace","Lai", "https://laizone.net/images/logos/logo-laizone1.png");
-				String imgUrl = "https://laizone.net/images/logos/logo-laizone1.png";
+				String imgUrl = "https://laizone.net/images/default_user.png";
 				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ('%s','%s','%s','%s','%s')",
 						email.toLowerCase(),
 						password,
@@ -196,12 +196,13 @@ public class accessJDBC {
 	 */
 	public boolean createComment(String email,String content, int parent_id) {
 		try {
+			//INSERT INTO Posts(userId, post_name, content, parent_id) VALUES (100001, "comment", 1, "This is a test comment");
+
 			int user_id = getUserId(email);
-			String post_name = "comment";
-			String insert = String.format("INSERT INTO Posts(userId,post_name,content, parent_id) VALUES (%s,'%s','%s')",
-					user_id,
-					post_name,
-					content				
+
+			String insert = String.format("INSERT INTO Posts(userId, post_name, parent_id, content) VALUES (%s, 'comment', %d, '%s'); ",	user_id,
+				parent_id,
+				content
 					);
 			PreparedStatement pstmt = con.prepareStatement(insert);
 			pstmt.execute();
@@ -214,9 +215,10 @@ public class accessJDBC {
 	
 	
 	// Helper function, Updates user field with new value;
-	public boolean updateUser(int id, String field, String newValue) {
+	public boolean updateUser(String email, String field, String newValue) {
 		try {
-			String update = String.format("UPDATE Users SET %s='%s' WHERE id=%s", field, newValue.strip(), id);
+			int user_id = getUserId(email);
+			String update = String.format("UPDATE Users SET %s='%s' WHERE id=%s", field, newValue.strip(), user_id);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
 			//System.out.println("User successfully updated");
@@ -232,8 +234,8 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserProfile(int id, String url) {
-		return updateUser(id, "img_profile_link", url);
+	public boolean updateUserProfile(String email, String url) {
+		return updateUser(email, "img_profile_link", url);
 	}
 	
 	
@@ -243,8 +245,8 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserFirstName(int id, String newFirstName) {
-		return updateUser(id, "first_name", newFirstName.toLowerCase());
+	public boolean updateUserFirstName(String email, String newFirstName) {
+		return updateUser(email, "first_name", newFirstName.toLowerCase());
 	}
 	
 	/***
@@ -253,8 +255,8 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserLastName(int id, String newLastName) {
-		return updateUser(id, "last_name", newLastName.toLowerCase());
+	public boolean updateUserLastName(String email, String newLastName) {
+		return updateUser(email, "last_name", newLastName.toLowerCase());
 	}
 	
 	/***
@@ -263,8 +265,8 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserEmail(int id, String newEmail) {
-		if (checkEmail(newEmail)) return updateUser(id, "email", newEmail);
+	public boolean updateUserEmail(String email, String newEmail) {
+		if (checkEmail(newEmail)) return updateUser(email, "email", newEmail);
 		return false;
 	}
 	/***
@@ -273,8 +275,8 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserPassword(int id, String newPassword) {
-		return updateUser(id, "password", newPassword);
+	public boolean updateUserPassword(String email, String newPassword) {
+		return updateUser(email, "password", newPassword);
 	}
 	
 	/***
@@ -283,9 +285,9 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserAdmin(int id, boolean is_admin) {
+	public boolean updateUserAdmin(String email, boolean is_admin) {
 		try {
-			String update = String.format("UPDATE Users SET is_admin=%s WHERE id=%s", is_admin, id);
+			String update = String.format("UPDATE Users SET is_admin=%s WHERE id=%s", is_admin, email);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
 			//System.out.println("User successfully updated");
@@ -558,11 +560,11 @@ public class accessJDBC {
 		
 		
 	}
-	
+	//String email, String field, String newValue
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		app.registerUser("ttt7tte@hotmail.com", "test", "Jace","Lai");
+		app.updateUserProfile("ttttte@hotmail.com","https://laizone.net/images/sexy_user.png");
 		app.close();
 		
 	}

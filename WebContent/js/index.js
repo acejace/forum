@@ -56,14 +56,19 @@ function getURLParameter(parameter)
         }
     }
 }
-function loadComments(){
-	var post_id = getURLParameter("post_id");
-	if (post_id!=null){
 
-		$("#loadComments").load("loadComments.jsp", {post_id: post_id});
+function hideAllComments(){
+	var comments = document.getElementById("loadComments");
+	if (comments.style.display == "none"){
+		comments.style.display = "block";
+	} else{
+
+		comments.style.display = "none";
 	}
 }
-
+function hideComment(comment){
+		comment.style.display = "none";
+}
 // hides table to show by recent or upvotes
 function hideTable(){
 	var button =  document.getElementById("showPostOrder");
@@ -99,7 +104,13 @@ function signUp(){
 function goBack() {
 	  window.history.back();
 	}
+function loadComments(){
+	var post_id = getURLParameter("post_id");
+	if (post_id!=null){
 
+		$("#loadComments").load("loadComments.jsp", {post_id: post_id});
+	}
+}
 //expand function for textbox
 var autoExpand = function (field) {
 
@@ -151,7 +162,6 @@ loadComments();
 //onscroll animation
 window.onscroll = function(){
 	if ((width >= 900)){
-		console.log(document.body.scrollTop);
 	    if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
 	        $(".main").css("background-size","150% auto");
 	    }else{
@@ -160,12 +170,7 @@ window.onscroll = function(){
 	}
 	};
 	
-//on document ready, load posts every 5s
-$(document).ready(function(){
-	//setInterval(loadPosts,5*1000);
-	//setInterval(loadComments(),5*1000);
-	
-});
+
 
 //Checks if textarea can be resized on input.
 document.addEventListener('input', function (event) {
@@ -173,6 +178,7 @@ document.addEventListener('input', function (event) {
 	autoExpand(event.target);
 }, false);
 
+//add event listeners on click (mainly used for buttons)
 document.addEventListener('click', function(event){
 	if (event.target.id == "backButton") {
 		goBack();
@@ -189,6 +195,12 @@ document.addEventListener('click', function(event){
 	if (event.target.id =="signUpButton"){
 		signUp();
 	}
+	if (event.target.id =="showHideAllCommentsButton"){
+		hideAllComments();
+		}
+	if (event.target.classList.contains("showHideCommentButton")){
+		hideComment(event.target.parentElement.parentElement.parentElement);
+	}
 },false);
 //loading icon
 
@@ -199,3 +211,10 @@ setTimeout(function(){
       $(".loading").css("display","none");
     },800);
 },1450);
+
+//on document ready, reload comments every 10s
+$(document).ready(function(){
+	console.log("ready");
+	setInterval(loadComments,10*1000);
+	
+});

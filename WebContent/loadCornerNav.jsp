@@ -16,6 +16,10 @@ if (session.getAttribute("loggedIn")==null){
 	<div>
 	<button class="btn_three" id="logOutButton">Log Out</button>
 	</div>
+	
+	<div id="rightDiv">
+	<button id="backButton" class="btn_two">back</button>
+	</div>
 </div>
 <%
 }

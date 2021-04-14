@@ -18,7 +18,7 @@
 <body>
 		
 	<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); 
-	session.setAttribute("page", "home");
+	session.setAttribute("page", "user profile");
 	session.setAttribute("subtitle", "user profile");
 	%>
 
@@ -28,47 +28,60 @@
 	</div>
 
 <div class="main">
-		<div id="cornerNav"> </div>
-		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
-		
-			<table id="userprofile">
-				<tr>
-					<th>Profile Picture: </th>
-					<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
-					<td><form action="edit.jsp">
-						<table>
-							<tr>
-							
-								<th> 
-									<input type="hidden" name="edit" value="">
-									<input type="text" id="value" name="value" placeholder="enter an img url" class="input">
-								</th>
-								<th>
-									<button type="submit" class="editBtn"> </button>
-								</th>
-							</tr>
-						</table>
-						</form>
-					</td>
-				</tr>
-			
-				<tr>
-					<th>First Name: </th> 
-					<td><%=session.getAttribute("first_name")%> </td> 
-					<td><input type="text" id="first_name"> <button value="first_name" class="editBtn">Edit</button></td>
-				<tr>
-					<th>Last Name: </th> 
-					<td><%=session.getAttribute("last_name")%> </td>
-					 <td><button value="last_name" class="editBtn">Edit</button>
-				</td>
-				<tr>
-					<th>Email: </th>
-					<td><%=session.getAttribute("email")%> </td>
-					<td><button value="email" class="editBtn">Edit</button></td>
-				</tr>
-			</table>
-		</div>
+	<div id="cornerNav"> </div>
+	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
+	
+	<table id="userprofile">
+		<tr>
+			<th>Profile Picture: </th>
+			<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
+			<td> 
+				<form action="edit.jsp" class="form">
+					 <input type="hidden" name="edit" value="changeProfileImg">
+					 <input type="text" id="value" name="value" placeholder="enter img url" class="input">
+					 <button type="submit" class="editBtn">Edit</button>
+				 </form>
+			</td>
+		</tr>
+	
+		<tr>
+			<th>First Name: </th> 
+			<td><%=session.getAttribute("first_name")%> </td> 
+			<td>
+				<form action="edit.jsp" class="form">
+					 <input type="hidden" name="edit" value="changeFirstName">
+					 <input type="text" id="value" name="value" placeholder="enter new first name" class="input">
+					 <button type="submit" class="editBtn">Edit</button>
+				 </form>
+			</td>
+		<tr>
+			<th>Last Name: </th> 
+			<td><%=session.getAttribute("last_name")%> </td>
+			 <td>
+				<form action="edit.jsp" class="form">
+					 <input type="hidden" name="edit" value="changeLastName">
+					 <input type="text" id="value" name="value" placeholder="enter new last name" class="input">
+					 <button type="submit" class="editBtn">Edit</button>
+				 </form>
+			</td>
+		<tr>
+			<th>Email: </th>
+			<td><%=session.getAttribute("email")%> </td>
+			<td>
+				<form action="edit.jsp" class="form">
+					 <input type="hidden" name="edit" value="changeEmail">
+					 <input type="text" id="value" name="value" placeholder="enter new email name" class="input">
+					 <button type="submit" class="editBtn">Edit</button>
+				</form>
+				<p style="font-size:0.5vw; text-align: left;">Note this will require you to login after the change</p>
+			</td>
+		</tr>
+	</table>
+	<div id="footer">
+	created by: Jace Lai
 	</div>
+</div>
+
 </body>
 <script src="js/index.js" type="text/javascript"></script>
 </html>

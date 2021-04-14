@@ -17,17 +17,19 @@
 	session.setAttribute("subtitle", "currently editing");
 	%>
 <% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); %>
-<div class="main">
+	<div class="main">
 	<div class="loading">
 		<div class="spinner"></div>
 	</div>
 	<div id="cornerNav"> </div>
 	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
+	
+	
+	
 	<% 
-		boolean changed = false;
 		String val = request.getParameter("value");
 		String email = (String) session.getAttribute("email");
-		
+		String edit = request.getParameter("edit");
 		if (val=="") {
 		%>
 	<div class="subtitle">
@@ -35,18 +37,50 @@
 		</div>
 	<button class="btn_two" id="backButton"> Click here to go back.</button>
 		
-		</div>
-	<%}
-	 else{
-		String editType = request.getParameter("edit");
-		if (editType=="change profile picture"){
+	<%} else{
+			app.connect();
+			if (edit.equals("changeProfileImg")){
+
+				if (app.updateUserProfile(email, val)){
+					session.setAttribute("img_profile_link",  app.getUserImg(email));
+					response.sendRedirect("userProfile.jsp");
+					app.close();
+				}
+			}
+			if (edit.equals("changeFirstName")){
+
+				if (app.updateUserFirstName(email, val)){
+					session.setAttribute("first_name", app.getUserFirstName(email));
+					response.sendRedirect("userProfile.jsp");
+					app.close();
+				} 
+			}
+			if (edit.equals("changeLastName")){
+
+				if (app.updateUserFirstName(email, val)){
+					session.setAttribute("last_name",  app.getUserLastName(email));
+					response.sendRedirect("userProfile.jsp");
+					app.close();
+				} 
+			}
 			
+			if (edit.equals("changeEmail")){
+				if (app.updateUserEmail(email, val)){
+					response.sendRedirect("logout.jsp");
+					app.close();
+				} 
+			}
 	%>	
-	<div> Successfully changed</div>
-	<%}
-	}%>
-	
-</div>
+		<div> There was an error changing your profile.</div>
+		<div> <button id="backButton"> Click here to go back</button></div>
+	<%			
+			}
+	%>
+
+	<% 
+	 app.close();
+	%>
+	</div>
 </body>
 
 

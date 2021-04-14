@@ -1,6 +1,7 @@
 body,html {
     padding:0px;
     margin:0px;
+    height:
     font-family: 'Comfortaa', cursive;
     font-weight:bold;
     color:#fff;
@@ -34,7 +35,7 @@ body,html {
 .header {
     width:70%;
     margin: 0 auto;
-    padding:5% 0%;
+    padding:0% 0% 5% 0%;
     text-align:center;
     font-size: 2.25vw;
     transition:0.6s ease-in-out;
@@ -130,6 +131,7 @@ body,html {
 #mainPost {
     margin:4vh 0px !important;
     padding:2vh 1vw !important;
+    min-height: 50vh;
     padding-left: 1%;
     border: 2px solid white;
     text-align: left;
@@ -165,11 +167,18 @@ body,html {
 	height: 3.0vw;
 }
 
+.loadComments{
+	display: hidden;
+}
+.commentButtonbox{
+	display: flex;
+	float: left;
+}
 .comment{
 	float: right;
-    margin:4vh 0px;
-    padding:2vh 0w 0vw 4vw;
-    width: 80%;
+    margin:2vh 0px;
+    padding:2vh 0vw;
+    width: 90%;
 }
 .comment tbody tr td{
 	border-bottom: 2px dotted white;
@@ -191,13 +200,16 @@ body,html {
 }
 .userCommentDate{
     text-align: right;
- 
+ 	border: 2px dotted white;
 }
-
+.commentButtonbox{
+ 	border-right: 2px dotted white;
+}
 .clickable:hover{
 	background: white;
 }
 #userprofile {
+	width:80%;
 	margin: 0 auto;
 }
 
@@ -317,6 +329,10 @@ body,html {
     color:#fff;
 }
 
+.editForm tr, .editForm tBody{
+	width: 100%;
+	margin: 0 auto;
+}
 
 .userImg {
 	max-width: 10%;
@@ -324,7 +340,6 @@ body,html {
 }
 
 .inputBox {
-	margin: 1% 0 1%  0;
 	text-align: left;
 	font-size: 1.5vw;
 }
@@ -336,13 +351,14 @@ body,html {
 .main{
 	text-align: center;
 	width:100%;
-    height:80vh;
+	min-height: 100vh;
+    height:120vh;
     align-items: center;
     background:linear-gradient(0deg,rgba(0,0,0,1),rgba(0,0,0,0)),url("https://laizone.net/images/bg.jpg") center center fixed;
     background-size:100% auto;
     background-repeat:no-repeat;
     color:white;
-    
+    position: absolute;
     justify-content:center;
     flex-direction:column;
     transition:1s ease-in-out;
@@ -373,6 +389,34 @@ body,html {
 	top: 1%;
 	left: 1%;
 	font-size: 1vw;
+}
+.cornerNav #rightDiv{
+	position: fixed;
+	top: 1%;
+	right: 1%;
+	font-size: 1vw;
+}
+#footer {
+    width:100%;
+    position: relative;
+    bottom: 0px;
+    padding:10vh 0px;
+    text-align:center;
+    font-weight:bold;
+}
+#footer a {
+    font-size:18px;
+    background-image: linear-gradient(to left, #FF416C 0%, #FF4B2B 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color: transparent;
+    background-size:500% 500% !important;
+    -webkit-animation: Gradient 20s ease infinite;
+    -moz-animation: Gradient 20s ease infinite;
+    -o-animation: Gradient 20s ease infinite;
+    animation: Gradient 20s ease infinite;
+    font-family: 'Comfortaa', cursive;
+    text-decoration:none;
 }
 .alignTextLeft{
 	text-align: left;

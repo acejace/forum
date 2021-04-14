@@ -13,9 +13,7 @@ forum.accessJDBC
 
 	Class.forName("com.mysql.cj.jdbc.Driver");
 	accessJDBC app = new accessJDBC();
-	app.connect();
 	session.setAttribute("app", app);
 	session.setAttribute("loaded",true);
-	app.close();
 	%>
 	
