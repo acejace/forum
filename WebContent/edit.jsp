@@ -40,6 +40,8 @@
 <% 
 boolean changed = false;
 String val = request.getParameter("value");
+String email = (String) session.getAttribute("email");
+
 if (val=="") {
 	%>
 	<div class="subtitle">
@@ -52,7 +54,7 @@ if (val=="") {
 	 else{
 		String editType = request.getParameter("edit");
 		if (editType=="change profile picture"){
-				
+			
 	%>	
 	<div> Successfully changed</div>
 	<%}

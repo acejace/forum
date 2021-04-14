@@ -18,14 +18,19 @@
 <body>
 
 		
-<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); %>
+<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); 
+session.setAttribute("page", "home");
+session.setAttribute("subtitle", "user profile");
+%>
+
+
 	<div class="loading">
 		<div class="spinner"></div>
 	</div>
 
 <div class="main">
 
-		<div class="animated slideInDown header" style="animation-delay: 1.8s;">
+		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader">
 			
 			<div class="userNameCorner">Welcome 
 			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>

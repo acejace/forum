@@ -31,9 +31,11 @@ function submitted() {
 }
 
 function loginSubmit() {
-	var form = document.getElementById("signup");
+	var form = document.getElementById("loginForm");
 	var inputs = form.getElementsByTagName("input");
-	
+	for (var i=0;i< inputs.length;i++){
+		console.log(inputs[i].value);
+	}
 	return validateInputs(inputs)
 }
 function editProfileUrl(){
@@ -62,34 +64,14 @@ function hideTable(){
 	}
 	
 }
-
-function hideLimitTable(){
-	var button =  document.getElementById("showPostOrder");
-	var h1Text = document.getElementById("displayType");
-	var elementTop = document.getElementById("top");
-	var elementRecent = document.getElementById("recent");
-	
-	//display recent posts
-	if (button.value =="top"){
-		elementTop.classList.remove("hidden");
-		elementRecent.classList.add("hidden");
-		button.value ="recent";
-		button.innerHTML = "Show Most Upvoted Posts";
-		h1Text.innerHTML = "displaying the 25 most recent posts";
-	} else{ //display top posts
-		elementTop.classList.add("hidden");
-		elementRecent.classList.remove("hidden");
-		button.value ="top";
-		button.innerHTML = "Show Most Recent Posts";
-		h1Text.innerHTML = "displaying the 25 most upvoted posts";
-	}
-	
+function logOut(){
+	window.location.href = "logout.jsp";
 }
 function goBack() {
 	  window.history.back();
 	}
 
-
+//expand function for textbox
 var autoExpand = function (field) {
 
 	// Reset field height
@@ -111,6 +93,24 @@ var autoExpand = function (field) {
 
 var width = $(window).width(); 
 
+function loadPosts(){
+	$("#loadPosts").load("loadPosts.jsp");
+}
+function loadLimitPosts(){
+	$("#loadLimitPosts").load("loadLimitPosts.jsp");
+}
+function loadHeader(){
+	$("#loadHeader").load("loadHeader.jsp");
+}
+
+//load stuff
+loadHeader();
+loadPosts();
+loadLimitPosts();
+
+
+
+
 //onscroll animation
 window.onscroll = function(){
 	if ((width >= 900)){
@@ -121,20 +121,14 @@ window.onscroll = function(){
 	    }
 	}
 	};
-//animate click on #link
+	
+//on document ready, load posts every 5s
 $(document).ready(function(){
-	$("a").on('click', function(event) {
-        if (this.hash !== "") {
-          event.preventDefault();
-          var hash = this.hash;
-          $('body,html').animate({
-          scrollTop: $(hash).offset().top
-          }, 1200, function(){
-          window.location.hash = hash;
-        });
-        } 
-    });
+	setInterval(loadPosts,5*1000);
+	setInterval(loadLimitPosts,5*1000);
+	
 });
+
 //Checks if textarea can be resized on input.
 document.addEventListener('input', function (event) {
 	if (event.target.tagName.toLowerCase() !== 'textarea') return;
@@ -144,6 +138,9 @@ document.addEventListener('input', function (event) {
 document.addEventListener('click', function(event){
 	if (event.target.id == "backButton") {
 		goBack();
+	}
+	if (event.target.id == "logOutButton") {
+		logOut();
 	}
 	if (event.target.id =="showPostOrder"){
 		hideTable();

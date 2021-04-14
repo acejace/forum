@@ -16,6 +16,6 @@ forum.accessJDBC
 	app.connect();
 	session.setAttribute("app", app);
 	session.setAttribute("loaded",true);
-	
+	app.close();
 	%>
 	

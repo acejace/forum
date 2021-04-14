@@ -12,6 +12,10 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<% if (session.getAttribute("loggedIn")!=null) response.sendRedirect("userProfile.jsp");
+session.setAttribute("page", "login");
+session.setAttribute("subtitle", "Login Page!");
+%>
 <div class="main">
 	<div class="loading">
 		<div class="spinner"></div>
@@ -32,15 +36,15 @@
 			<p style="color: white;">Login Page</p>
 		</div>
 
-		<form class="form" onsubmit="return loginSubmit()"
-			action="validateLogin.jsp">
-			<div class="inputBox">
+		<form class="form"
+			action="validateLogin.jsp" id="loginForm">
+			<div class="inputBox alignTextCenter">
 				Email : <input type="email" name="email" id="email" value="">
 			</div>
-			<div class="inputBox">
+			<div class="inputBox alignTextCenter">
 				Password: <input type="password" name="password" value="">
 			</div>
-			<div class="inputBox">
+			<div class="inputBox alignTextCenter">
 				<button type="submit" class="btn_one">Login</button>
 				<button type="reset" value="reset" class="btn_two">Reset
 					Form</button>

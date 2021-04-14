@@ -223,6 +223,24 @@ body,html {
     cursor:pointer;
     color:#fff;
 }
+.btn_three {
+    color:red;
+    padding:10px 40px;
+    border-radius:50px;
+    border:2px solid #fff;
+    font-size:1vw;
+    font-family: 'Comfortaa', cursive;
+    font-weight:bold;
+    background:transparent;
+    transition:0.4s ease-in-out;
+    margin:30px 10px;
+}
+.btn_three:hover {
+    background:transparent;
+    cursor:pointer;
+    color:#fff;
+}
+
 #userprofile {
 	width: 70%;
     margin: 0 auto;
@@ -273,6 +291,7 @@ body,html {
 	text-align: left;
 	font-size: 1.5vw;
 }
+
 .inputBox[type="text"],.inputBox[type="password"]{
 	font-size: 1.5vw;
 }
@@ -318,7 +337,9 @@ body,html {
 	left: 1%;
 	font-size: 1vw;
 }
-
+.alignTextCenter{
+	text-align: center;
+}
 .hidden {
 	display: none;
 }

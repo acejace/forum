@@ -1,10 +1,10 @@
 <%@ page language="java" %>
 <%@ include file="accessJDBC.jsp" %>
 <%
+		app.connect();
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
 
-		
 		//if successfully registered then
 		if (app.validateLogin(email,password)){
 			session.setAttribute("email", email);
