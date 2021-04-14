@@ -35,7 +35,7 @@ body,html {
     width:80%;
     padding:4% 10%;
     text-align:center;
- 
+    font-size: 2.25vw;
     transition:0.6s ease-in-out;
 }
 .header div {
@@ -123,13 +123,23 @@ body,html {
     border-bottom:2px solid rgba(255,255,255,1);
 }
 
+#mainPost {
+    margin:4vh 0px !important;
+    padding:2vh 1vw !important;
+    padding-left: 1%;
+    border: 2px solid white;
+    text-align: left;
+    font-size: 1vw;
+    background: rgba(0, 0, 0, 0.7);
+}
 .post {
     width:80%;
     padding:2% 10%;
     background: rgba(0,0,0,0.7);
+    font-size: 1vw;
 }
 .post div h1 {
-    font-size:40px;
+    font-size:1.5vw;
     background-image: linear-gradient(to left, #FF416C 0%, #FF4B2B 100%);
     -webkit-background-clip:text;
     background-clip:text;
@@ -141,25 +151,36 @@ body,html {
     animation: Gradient 20s ease infinite;
     font-family: 'Comfortaa', cursive;
 }
-#mainPost {
-    margin:4vh 0px !important;
-    padding:2vh 1vw !important;
-    padding-left: 1%;
-    border: 2px solid white;
-    text-align: left;
-    font-size: 1vw;
-    background: rgba(0, 0, 0, 0.7);
-}
-.post .comment{
-    margin:4vh 0px !important;
-    padding:2vh 1.5vw !important;
-}
+
 .posts tbody tr td, .posts tbody tr th{
 	border-right: 2px solid white;
 	border-bottom: 2px solid white;
+    
 }
 .posts tbody tr{
 	height: 3.0vw;
+}
+
+.comment{
+	float: right;
+    margin:4vh 0px;
+    padding:2vh 0w 0vw 4vw;
+    width: 80%;
+}
+.comment tbody tr td{
+	border-bottom: 2px dotted white;
+    border-collapse: collapse;
+    height: 3.0vw;
+    padding: 1vw 1vw;
+}
+
+.userIdComment{
+    width: 20%;
+    color: red;
+}
+.userCommentDate{
+    text-align: right;
+ 
 }
 
 .clickable:hover{
@@ -169,9 +190,6 @@ body,html {
 	margin: 0 auto;
 }
 
-::placeholder {
-    color:#fff;
-}
 .buttonHeader {
 	text-align: left;
 	margin: 2vw 0 0 0;
@@ -181,11 +199,19 @@ body,html {
 .viewPosts{
 	margin: 0 auto;
 	width: 100%;
+    border-collapse: collapse;
 	font-size: 1vw;
+    border-collapse: collapse;
 	border: 2px solid white;
 	background: rgba(0, 0, 0, 0.7);
 }
-
+.viewComments{
+	margin: 0 auto;
+    border-collapse: collapse;
+	width: 100%;
+	border: 2px dotted white;
+	background: rgba(0, 0, 0, 0.7);
+}
 .btn_one {
     color:white;
     padding:10px 40px;
@@ -337,8 +363,14 @@ body,html {
 	left: 1%;
 	font-size: 1vw;
 }
+.alignTextLeft{
+	text-align: left;
+}
 .alignTextCenter{
 	text-align: center;
+}
+.alignTextRight{
+	text-align: right;
 }
 .hidden {
 	display: none;
@@ -381,10 +413,18 @@ body,html {
         font-size:14px;
         padding:8px 20px;
     }
-    #contact form input {
+    .btn_three {
+        font-size:14px;
+        padding:8px 20px;
+    }
+    .editBtn{
+        font-size: 14px;
+        padding: 8px 20px;
+    }
+    .post form input {
         width:92%;
     }
-    #contact form textarea {
+    .post form textarea {
         width:92%;
     }
     .btn_social {

@@ -41,7 +41,7 @@
 			%>
 			</table>		
 			
-			<table class="viewPosts center posts hidden" id="recent">
+			<table class="viewPosts posts hidden" id="recent">
 			<tr>
 				<th> Author ID </th>
 				<th> Upvotes </th>

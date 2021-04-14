@@ -42,6 +42,27 @@ function editProfileUrl(){
 	
 }
 
+// returns value of parammeter from current url if any.
+function getURLParameter(parameter)
+{
+    var pageURL = window.location.search.substring(1);
+    var urlParameters = pageURL.split('&');
+    for (var i = 0; i < urlParameters.length; i++) 
+    {
+        var parameterName = urlParameters[i].split('=');
+        if (parameterName[0] == sParam) 
+        {
+            return parameterName[1];
+        }
+    }
+}
+function loadComments(){
+	var post_id = getURLParameter("post_id");
+	var url = "loadComments.jsp%post_id="+post_id;
+	$("#comments").load(url);
+}
+
+// hides table to show by recent or upvotes
 function hideTable(){
 	var button =  document.getElementById("showPostOrder");
 	var h1Text = document.getElementById("displayType");
@@ -124,8 +145,8 @@ window.onscroll = function(){
 	
 //on document ready, load posts every 5s
 $(document).ready(function(){
-	setInterval(loadPosts,5*1000);
-	setInterval(loadLimitPosts,5*1000);
+	//setInterval(loadPosts,5*1000);
+	//setInterval(loadLimitPosts,5*1000);
 	
 });
 

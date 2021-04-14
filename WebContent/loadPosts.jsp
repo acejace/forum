@@ -1,5 +1,5 @@
 <%@ include file="accessJDBC.jsp" %>
-<h1 style="text-align: left; padding: 0px;" id="displayType">viewing most upvoted posts</h1>
+<h1 style="text-align: left; padding: 0px;" id="displayType">displaying the most upvoted posts first</h1>
 <table class="viewPosts center posts" id="top">
 			<tr>
 				<th> Author ID </th>
@@ -41,7 +41,7 @@
 			%>
 			</table>		
 			
-			<table class="viewPosts center posts hidden" id="recent">
+			<table class="viewPosts posts hidden" id="recent">
 			<tr>
 				<th> Author ID </th>
 				<th> Upvotes </th>
