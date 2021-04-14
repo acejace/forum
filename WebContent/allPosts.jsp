@@ -58,7 +58,7 @@
 			</div>
 			<!-- this is where posts start -->
 			<div class="buttonHeader">
-			<button type="submit" class="btn_one" id="showPostOrder" value="top" onclick="hideTable()">Show Most Recent Posts</button>
+			<button type="submit" class="btn_one" id="showPostOrder" value="top" >Show Most Recent Posts</button>
 			</div>
 			
 			<div class="post">

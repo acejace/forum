@@ -213,7 +213,7 @@ public class accessJDBC {
 	// Helper function, Updates user field with new value;
 	public boolean updateUser(int id, String field, String newValue) {
 		try {
-			String update = String.format("UPDATE Users SET %s='%s' WHERE id=%s", field, newValue, id);
+			String update = String.format("UPDATE Users SET %s='%s' WHERE id=%s", field, newValue.strip(), id);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
 			//System.out.println("User successfully updated");
@@ -223,6 +223,16 @@ public class accessJDBC {
 			return false;
 		}
 	}
+	/***
+	 * Updates the users first name from id.Returns true if successful and false if failed. 
+	 * @param id
+	 * @param newFirstName
+	 * @return 
+	 */
+	public boolean updateUserProfile(int id, String url) {
+		return updateUser(id, "img_profile_link", url);
+	}
+	
 	
 	/***
 	 * Updates the users first name from id.Returns true if successful and false if failed. 
@@ -240,7 +250,7 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserLasttName(int id, String newLastName) {
+	public boolean updateUserLastName(int id, String newLastName) {
 		return updateUser(id, "last_name", newLastName.toLowerCase());
 	}
 	
@@ -290,12 +300,16 @@ public class accessJDBC {
 	 * @return
 	 * @throws SQLException
 	 */
-	public int getUserId(String email) throws SQLException {
+	public int getUserId(String email) {
+		try {
 		String query = String.format("SELECT id FROM Users WHERE email = '%s'", email.toLowerCase());
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
 		rs.next();
 		return rs.getInt("id");
+		}catch (SQLException e) {
+			return -1;
+		}
 	}
 	/***
 	 * Returns User's First Name from email.

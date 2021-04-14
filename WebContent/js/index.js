@@ -90,7 +90,6 @@ function goBack() {
 	}
 
 
-
 var autoExpand = function (field) {
 
 	// Reset field height
@@ -145,6 +144,9 @@ document.addEventListener('input', function (event) {
 document.addEventListener('click', function(event){
 	if (event.target.id == "backButton") {
 		goBack();
+	}
+	if (event.target.id =="showPostOrder"){
+		hideTable();
 	}
 },false);
 //loading icon
