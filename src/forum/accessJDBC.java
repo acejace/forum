@@ -405,7 +405,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getAllPosts() {
 		try {
-			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL";
+			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
@@ -417,12 +417,28 @@ public class accessJDBC {
 	}
 	
 	/**
+	 * Returns result set of all posts ordered by date. Comments are not included.
+	 * @return
+	 */
+	public ResultSet getRecentPosts() {
+		try {
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC");
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	/**
 	 * Returns result set of all posts ordered by upvotes. Comments are not included.
 	 * @return
 	 */
 	public ResultSet getTopPosts() {
 		try {
-			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes";
+			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes DESC";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
@@ -483,6 +499,27 @@ public class accessJDBC {
 			return null;
 		}
 	}
+	
+	/**
+	 * Returns result set of number of most recent posts. Comments are not included.
+	 * @return
+	 * @param post_id
+	 * @return
+	 */
+	public ResultSet getUserPosts(String email) {
+		try {
+			int user_id = getUserId(email);
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE user_id = %d", user_id);
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			return rs;
+			
+		}catch (SQLException e) {
+			System.out.println(e);
+			return null;
+		}
+	}
+	
 	/***
 	 * Returns true if email and password match results in database.
 	 * @param email
@@ -490,14 +527,17 @@ public class accessJDBC {
 	 * @return
 	 * @throws SQLException
 	 */
-	public boolean validateLogin(String email, String password) throws SQLException {
-	String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
-	PreparedStatement pstmt = con.prepareStatement(query);
-	ResultSet rs = pstmt.executeQuery();
-	rs.next();
-	if (rs.getString("password").equals(password)) return true;
-	
-	return false;
+	public boolean validateLogin(String email, String password) {
+	try {
+		String query = String.format("SELECT password FROM Users WHERE email = '%s'", email.toLowerCase());
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		if (rs.getString("password").equals(password)) return true;
+		return false;}
+	catch (SQLException e) {
+		return false;
+	}
 		
 		
 	}
@@ -505,35 +545,7 @@ public class accessJDBC {
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		//app.createPost("fadmin@laizone.net", "Test post 2" , "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?");
-
-		/**
-		 * int postid = rs.getInt("postId");
-			int postUpvotes = rs.getInt("postUpvotes");
-			String postName = rs.getString("post_name");
-			String content = rs.getString("content");
-			
-			System.out.println("Post ID: \t" + postid);
-			System.out.println("Post Upvotes: \t" + postUpvotes);
-			System.out.println("Post Name: \t" + postName);
-			System.out.println("Content: \t" + content);
-		
-		 */
-		
-		ResultSet rs =app.getPost(1);
-		rs.next();
-		int userId = rs.getInt("userId");
-		int postid = rs.getInt("postId");
-		int postUpvotes = rs.getInt("postUpvotes");
-		String postName = rs.getString("post_name");
-		String content = rs.getString("content");
-		String date = rs.getString("posted_at");
-		
-		System.out.println("Post ID: \t" + postid);
-		System.out.println("Post Upvotes: \t" + postUpvotes);
-		System.out.println("Post Name: \t" + postName);
-		System.out.println("Content: \t" + content);
-	
+		//if (app.validateLogin("acejace@hotmail.com", "test")) System.out.println("Success");;
 		app.close();
 		
 	}

@@ -32,7 +32,7 @@
 			<p style="color: white;">Login Page</p>
 		</div>
 
-		<form class="form" onsubmit="return submitted()"
+		<form class="form" onsubmit="return loginSubmit()"
 			action="validateLogin.jsp">
 			<div class="inputBox">
 				Email : <input type="email" name="email" id="email" value="">

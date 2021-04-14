@@ -31,7 +31,7 @@
 			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>
 			</div>
 			<div class="navbar">
-			<a href="userProfile.jsp"><%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>'s profile</a> 
+			<a href="userPosts.jsp">my posts</a> 
 			<a href="createPost.jsp"style="margin: 0px 2vw;">create post</a> 
 			<a href="index.jsp">home</a>	
 			</div>
@@ -42,20 +42,32 @@
 					style="max-height: 30vh; max-width: 40%;"> </a>
 			</div>
 			<div class="subtitle">
-				<p style="color: white;">Create Your Post</p>
+				<p style="color: white;">Your profile</p>
 			</div>
 		
 			<table id="userprofile">
 				<tr>
 					<th>Profile Picture: </th>
 					<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
-					<td><a href="google.com"><button value="img_profile_link" class="editBtn">Edit</button></a></td>
+					<td><form action="edit.jsp">
+						<table>
+							<tr>
+								<th>
+									<input type="submit" class="editBtn" name="edit" value="change profile picture">
+									</th>
+								<th> 
+									<input type="text" id="value" name="value" placeholder="enter an img url" class="input">
+									</th>
+								</tr>
+						</table>
+						</form>
+					</td>
 				</tr>
 			
 				<tr>
 					<th>First Name: </th> 
 					<td><%=session.getAttribute("first_name")%> </td> 
-					<td><button value="first_name" class="editBtn">Edit</button></td>
+					<td><input type="text" id="first_name"> <button value="first_name" class="editBtn">Edit</button></td>
 				<tr>
 					<th>Last Name: </th> 
 					<td><%=session.getAttribute("last_name")%> </td>

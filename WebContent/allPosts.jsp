@@ -47,25 +47,22 @@
 		<%	
 		}
 		%>
-	
+		
 			<div class="title">
 				<a href="https://laizone.net/"><img
 					src="https://laizone.net/images/logos/logo-laizone1.png"
 					style="max-height: 30vh; max-width: 40%;"> </a>
 			</div>
 			<div class="subtitle">
-				<p style="color: white;">The anonymous forum</p>
+				<p style="color: white;">Viewing all posts</p>
 			</div>
 			<!-- this is where posts start -->
-			
-		</div>
-		<div class="body">
 			<div class="buttonHeader">
-			<button type="submit" class="btn_one" id="showPostOrder" value="top" onclick="hideLimitTable()">Show Most Recent Posts</button>
+			<button type="submit" class="btn_one" id="showPostOrder" value="top" onclick="hideTable()">Show Most Recent Posts</button>
 			</div>
 			
 			<div class="post">
-				<h1 style="text-align: left; padding: 0px;" id="displayType"> displaying the 25 most upvoted posts</h1>
+				<h1 style="text-align: left; padding: 0px;" id="displayType">viewing most upvoted posts</h1>
 			
 			<table class="viewPosts center posts" id="top">
 			<tr>
@@ -76,7 +73,7 @@
 			</tr>
 			
 			<%
-			ResultSet rs = app.getTopPosts(10);
+			ResultSet rs = app.getTopPosts();
 			int userId;
 			int postId;
 			int postUpvotes;
@@ -117,7 +114,7 @@
 			
 			
 			<%
-			rs = app.getRecentPosts(25);
+			rs = app.getRecentPosts();
 		
 			while (rs.next()){
 				userId = rs.getInt("userId");
