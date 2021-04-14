@@ -38,10 +38,12 @@ function loginSubmit() {
 }
 
 function hideTable(){
-	var button =$("#showPostOrder");
+	var button =  document.getElementById("showPostOrder");
 	var elementTop = document.getElementById("top");
 	var elementRecent = document.getElementById("recent");
 	
+	var val = button.getAttribute("value");
+	console.log(val);
 	if (button.value =="top"){
 		elementTop.classList.remove("hidden");
 		elementRecent.classList.add("hidden");

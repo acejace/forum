@@ -101,10 +101,7 @@
 			}
 			
 			%>
-			</table>
-			</div>
-			<div class="post">
-		
+			</table>		
 			
 			<table class="viewPosts center posts hidden" id="recent">
 			<tr>
