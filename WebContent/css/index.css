@@ -33,10 +33,11 @@ body,html {
 }
 .header {
     width:80%;
-    padding:4% 10%;
+    padding:0% 5%;
     text-align:center;
     font-size: 2.25vw;
     transition:0.6s ease-in-out;
+    position:relative;
 }
 .header div {
     display:block;
@@ -48,6 +49,8 @@ body,html {
     text-align:center;
     transition:0.6s ease-in-out;
 }
+
+
 .body div {
     display:block;
 }
@@ -135,7 +138,7 @@ body,html {
 .post {
     width:80%;
     padding:2% 10%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.0);
     font-size: 1vw;
 }
 .post div h1 {
@@ -172,6 +175,13 @@ body,html {
     border-collapse: collapse;
     height: 3.0vw;
     padding: 1vw 1vw;
+}
+.createComment {
+	font-size: 1vw;
+    width:80%;
+    padding:0 10%;
+    text-align:center;
+    transition:0.6s ease-in-out;
 }
 
 .userIdComment{
@@ -331,7 +341,7 @@ body,html {
     background-size:100% auto;
     background-repeat:no-repeat;
     color:white;
-    display:flex;
+    
     justify-content:center;
     flex-direction:column;
     transition:1s ease-in-out;
@@ -357,8 +367,8 @@ body,html {
     border-bottom:2px solid #fff;
 }
 
-.userNameCorner{
-	position: absolute;
+.cornerNav{
+	position: fixed;
 	top: 1%;
 	left: 1%;
 	font-size: 1vw;

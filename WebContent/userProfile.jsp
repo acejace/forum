@@ -16,12 +16,11 @@
 
 
 <body>
-
 		
-<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); 
-session.setAttribute("page", "home");
-session.setAttribute("subtitle", "user profile");
-%>
+	<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); 
+	session.setAttribute("page", "home");
+	session.setAttribute("subtitle", "user profile");
+	%>
 
 
 	<div class="loading">
@@ -29,7 +28,7 @@ session.setAttribute("subtitle", "user profile");
 	</div>
 
 <div class="main">
-
+		<div id="cornerNav"> </div>
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
 		
 			<table id="userprofile">

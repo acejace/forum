@@ -25,6 +25,7 @@ session.setAttribute("page", "home");
 session.setAttribute("subtitle", "home of the anonymous forum");
 %>
 <div class="main">
+	<div id="cornerNav"> </div>
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader">
 						
 		</div>

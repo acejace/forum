@@ -192,9 +192,10 @@ public class accessJDBC {
 	 * @param parent_id
 	 * @return
 	 */
-	public boolean createComment(String email, String post_name, String content, int parent_id) {
+	public boolean createComment(String email,String content, int parent_id) {
 		try {
 			int user_id = getUserId(email);
+			String post_name = "comment";
 			String insert = String.format("INSERT INTO Posts(userId,post_name,content, parent_id) VALUES (%s,'%s','%s')",
 					user_id,
 					post_name,

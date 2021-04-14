@@ -25,6 +25,7 @@ session.setAttribute("page", "all posts");
 session.setAttribute("subtitle", "currently viewing all posts");
 %>
 <div class="main">
+	<div id="cornerNav"> </div>
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader">
 		</div>
 			<!-- this is where posts start -->

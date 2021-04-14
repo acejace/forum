@@ -50,7 +50,7 @@ function getURLParameter(parameter)
     for (var i = 0; i < urlParameters.length; i++) 
     {
         var parameterName = urlParameters[i].split('=');
-        if (parameterName[0] == sParam) 
+        if (parameterName[0] == parameter) 
         {
             return parameterName[1];
         }
@@ -58,8 +58,10 @@ function getURLParameter(parameter)
 }
 function loadComments(){
 	var post_id = getURLParameter("post_id");
-	var url = "loadComments.jsp%post_id="+post_id;
-	$("#comments").load(url);
+	if (post_id!=null){
+
+		$("#loadComments").load("loadComments.jsp", {post_id: post_id});
+	}
 }
 
 // hides table to show by recent or upvotes
@@ -112,7 +114,9 @@ var autoExpand = function (field) {
 
 };
 
+
 var width = $(window).width(); 
+var height = $(window).height(); 
 
 function loadPosts(){
 	$("#loadPosts").load("loadPosts.jsp");
@@ -123,18 +127,25 @@ function loadLimitPosts(){
 function loadHeader(){
 	$("#loadHeader").load("loadHeader.jsp");
 }
+function loadCornerNav(){
+	console.log("loading corner nav");
+	$("#cornerNav").load("loadCornerNav.jsp");
+}
+
 
 //load stuff
+loadCornerNav();
 loadHeader();
 loadPosts();
 loadLimitPosts();
-
+loadComments();
 
 
 
 //onscroll animation
 window.onscroll = function(){
 	if ((width >= 900)){
+		console.log(document.body.scrollTop);
 	    if(document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
 	        $(".main").css("background-size","150% auto");
 	    }else{
@@ -146,7 +157,7 @@ window.onscroll = function(){
 //on document ready, load posts every 5s
 $(document).ready(function(){
 	//setInterval(loadPosts,5*1000);
-	//setInterval(loadLimitPosts,5*1000);
+	//setInterval(loadComments(),5*1000);
 	
 });
 
@@ -168,6 +179,7 @@ document.addEventListener('click', function(event){
 	}
 },false);
 //loading icon
+
 setTimeout(function(){
     $(".loading").addClass("animated fadeOut");
     setTimeout(function(){

@@ -14,8 +14,8 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <%
-session.setAttribute("page", "home");
-session.setAttribute("subtitle", "home of the anonymous forum");
+session.setAttribute("page", "viewing post");
+session.setAttribute("subtitle", "currently viewing post");
 %>
 
 <body>
@@ -35,6 +35,7 @@ session.setAttribute("subtitle", "home of the anonymous forum");
 			app.close();
 %>
 	<div class="main">
+		<div id="cornerNav"> </div>
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"> </div>
 		<div class="post">
 			<div id="mainPost">
@@ -44,10 +45,28 @@ session.setAttribute("subtitle", "home of the anonymous forum");
 					<%=content %>
 				</div>
 			</div>
+			
+			<% if (session.getAttribute("loggedIn")!=null) { %>
+
+			<div class="createComment">
+				<form class="form" onsubmit="return submitted()"
+					action="validatePost.jsp">
+						<input type="hidden" value='<%=post_id %>'>
+					<div class="inputBox">comment:</div>
+					<div class="inputBox">
+						<textarea name="content" style="width: 80%"></textarea>
+					</div>
+					<div class="inputBox">
+						<button type="submit" class="btn_one">comment</button>
+					</div>
+
+				</form>
+			</div>
+			<%} %>
 			<div id="loadComments"> </div>
 			
-		</div>
-		
+	
+	</div>
 			
 	</div>
 </body>
