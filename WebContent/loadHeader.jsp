@@ -6,15 +6,19 @@
 	<a href="allPosts.jsp">all posts</a>
 	<%
 		} else {
-	%>
+	if (session.getAttribute("loggedIn")!=null ) {%>
 	<a href="userProfile.jsp">my profile</a>
 
-	<%
+	<%}
 		}
+	if (session.getAttribute("loggedIn")!=null ) {
 	%>
 	<a href="createPost.jsp" style="margin: 0px 2vw;">create post</a>
 	<%
-		if (session.getAttribute("page") == "home") {
+	} else{
+	%>
+
+<%	}if (session.getAttribute("page") == "home") {
 	%>
 	<a href="allPosts.jsp">all posts</a>
 

@@ -26,10 +26,8 @@ session.setAttribute("subtitle", "home of the anonymous forum");
 %>
 <div class="main">
 	<div id="cornerNav"> </div>
-		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader">
-						
-		</div>
-		<div class="body">
+	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
+	<div class="body">
 			<div class="buttonHeader">
 			<button type="submit" class="btn_one" id="showPostOrder" value="top">Show Most Recent Posts</button>
 			

@@ -38,13 +38,15 @@
 					<td><form action="edit.jsp">
 						<table>
 							<tr>
-								<th>
-									<input type="submit" class="editBtn" name="edit" value="change profile picture">
-									</th>
+							
 								<th> 
+									<input type="hidden" name="edit" value="">
 									<input type="text" id="value" name="value" placeholder="enter an img url" class="input">
-									</th>
-								</tr>
+								</th>
+								<th>
+									<button type="submit" class="editBtn"> </button>
+								</th>
+							</tr>
 						</table>
 						</form>
 					</td>

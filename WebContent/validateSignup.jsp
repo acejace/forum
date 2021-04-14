@@ -1,6 +1,7 @@
 <%@ page language="java" %>
 <%@ include file="accessJDBC.jsp" %>
 <%
+		app.connect();
 		String email = request.getParameter("email").trim();
 		String password = request.getParameter("password").trim();
 		String first_name = request.getParameter("first_name").trim();

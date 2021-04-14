@@ -90,6 +90,12 @@ function hideTable(){
 function logOut(){
 	window.location.href = "logout.jsp";
 }
+function logIn(){
+	window.location.href = "login.jsp";
+}
+function signUp(){
+	window.location.href = "signup.jsp";
+}
 function goBack() {
 	  window.history.back();
 	}
@@ -176,6 +182,12 @@ document.addEventListener('click', function(event){
 	}
 	if (event.target.id =="showPostOrder"){
 		hideTable();
+	}
+	if (event.target.id =="logInButton"){
+		logIn();
+	}
+	if (event.target.id =="signUpButton"){
+		signUp();
 	}
 },false);
 //loading icon

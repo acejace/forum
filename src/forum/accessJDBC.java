@@ -132,6 +132,7 @@ public class accessJDBC {
 	
 	/***
 	 * Registers user into the database. id and date created are automatically initialized.
+	 * 
 	 * @param email
 	 * @param password
 	 * @param last_name
@@ -141,8 +142,9 @@ public class accessJDBC {
 	public boolean registerUser(String email, String password, String last_name, String first_name){
 		try {
 			if (checkEmail(email)) {
+				//INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ("ttttte@hotmail.com", "test", "Jace","Lai", "https://laizone.net/images/logos/logo-laizone1.png");
 				String imgUrl = "https://laizone.net/images/logos/logo-laizone1.png";
-				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, imgUrl) VALUES ('%s','%s','%s','%s''%s')",
+				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ('%s','%s','%s','%s','%s')",
 						email.toLowerCase(),
 						password,
 						last_name.toLowerCase(),
@@ -153,7 +155,7 @@ public class accessJDBC {
 				//System.out.println("Account created successfully");
 				return true;
 			}
-			//System.out.println("Email already exists");
+			System.out.println("Email already exists");
 			return false;
 		}  catch (SQLException e) {
 			System.out.println(e);
@@ -560,7 +562,7 @@ public class accessJDBC {
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		//if (app.validateLogin("acejace@hotmail.com", "test")) System.out.println("Success");;
+		app.registerUser("ttt7tte@hotmail.com", "test", "Jace","Lai");
 		app.close();
 		
 	}

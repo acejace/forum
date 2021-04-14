@@ -12,38 +12,24 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-
+	<%
+	session.setAttribute("page", "edit");
+	session.setAttribute("subtitle", "currently editing");
+	%>
 <% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); %>
 <div class="main">
 	<div class="loading">
 		<div class="spinner"></div>
 	</div>
-	<div class="animated slideInDown header" style="animation-delay: 1.8s;">
-
-			<div class="userNameCorner">Welcome 
-			<%=session.getAttribute("first_name")%>, <%=session.getAttribute("last_name")%>
-			</div>
-			<div class="navbar">
-			<a href="userProfile.jsp">my profile</a> 
-			<a href="createPost.jsp"style="margin: 0px 2vw;">create post</a> 
-			<a href="index.jsp">home</a>	
-			</div>
-			  
-			<div class="title">
-				<a href="https://laizone.net/"><img
-					src="https://laizone.net/images/logos/logo-laizone1.png"
-					style="max-height: 30vh; max-width: 40%;"> </a>
-			</div>
-		<div class="subtitle">
-			<p style="color: white;">Editing </p>
-		</div>
-<% 
-boolean changed = false;
-String val = request.getParameter("value");
-String email = (String) session.getAttribute("email");
-
-if (val=="") {
-	%>
+	<div id="cornerNav"> </div>
+	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
+	<% 
+		boolean changed = false;
+		String val = request.getParameter("value");
+		String email = (String) session.getAttribute("email");
+		
+		if (val=="") {
+		%>
 	<div class="subtitle">
 			<p style="color: white;">Please make sure to fill the required field. </p>
 		</div>

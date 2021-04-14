@@ -15,26 +15,16 @@
 <% if (session.getAttribute("loggedIn")!=null) response.sendRedirect("userProfile.jsp");
 session.setAttribute("page", "login");
 session.setAttribute("subtitle", "Login Page!");
-%>
+String loginErrorMsg= (String) session.getAttribute("loginFailed");
+if (loginErrorMsg == null) loginErrorMsg = "";	%>
 <div class="main">
 	<div class="loading">
 		<div class="spinner"></div>
 	</div>
-
-	<div class="animated slideInDown header" style="animation-delay: 1.8s;">
-		<div class="navbar">
-			<a href="login.jsp">login</a> <a href="signup.jsp"
-				style="margin: 0px 2vw;">sign up</a> 
-			<a href="index.jsp">home</a>
-		</div>
-		<div class="title">
-			<a href="https://laizone.net/"><img
-				src="https://laizone.net/images/logos/logo-laizone1.png"
-				style="max-height: 30vh; max-width: 40%;"> </a>
-		</div>
-		<div class="subtitle">
-			<p style="color: white;">Login Page</p>
-		</div>
+		<div id="cornerNav"></div>
+		<div class="animated slideInDown header"
+			style="animation-delay: 1.8s;" id="loadHeader"></div>
+		<div> 
 
 		<form class="form"
 			action="validateLogin.jsp" id="loginForm">
@@ -49,12 +39,10 @@ session.setAttribute("subtitle", "Login Page!");
 				<button type="reset" value="reset" class="btn_two">Reset
 					Form</button>
 			</div>
-			<% 
-			String loginErrorMsg= (String) session.getAttribute("loginFailed");
-			if (loginErrorMsg == null) loginErrorMsg = "";
-			%>
+		
 			<p class="invalidInput"> <%=loginErrorMsg %></p>
 		</form>
+		</div>
 		</div>
 	</div>
 
