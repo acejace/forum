@@ -1,6 +1,6 @@
 body,html {
-    padding:0px;
-    margin:0px;
+    padding:0;
+    margin:0;
     height:
     font-family: 'Comfortaa', cursive;
     font-weight:bold;
@@ -35,7 +35,7 @@ body,html {
 .header {
     width:70%;
     margin: 0 auto;
-    padding:0% 0% 5% 0%;
+    padding:0 0 5% 0;
     text-align:center;
     font-size: 2.25vw;
     transition:0.6s ease-in-out;
@@ -97,7 +97,7 @@ body,html {
     width:46%;
     margin:20px 1%;
     background:transparent;
-    border:0px;
+    border:0;
     border-bottom:2px solid rgba(255,255,255,0.5);
     padding:8px 10px;
     font-family: 'Comfortaa', cursive;
@@ -129,10 +129,9 @@ body,html {
 }
 
 #mainPost {
-    margin:4vh 0px !important;
-    padding:2vh 1vw !important;
+    margin:4vh 0px;
     min-height: 50vh;
-    padding-left: 1%;
+    padding: 2vh 1vw 2vh 1%;
     border: 2px solid white;
     text-align: left;
     font-size: 1vw;
@@ -177,7 +176,7 @@ body,html {
 .comment{
 	float: right;
     margin:2vh 0px;
-    padding:2vh 0vw;
+    padding:2vh 0;
     width: 90%;
 }
 .comment tbody tr td{
@@ -224,8 +223,7 @@ body,html {
 	width: 100%;
     border-collapse: collapse;
 	font-size: 1vw;
-    border-collapse: collapse;
-	border: 2px solid white;
+    border: 2px solid white;
 	background: rgba(0, 0, 0, 0.7);
 }
 .viewComments{
@@ -354,9 +352,8 @@ body,html {
 	min-height: 100vh;
     height:120vh;
     align-items: center;
-    background:linear-gradient(0deg,rgba(0,0,0,1),rgba(0,0,0,0)),url("https://laizone.net/images/bg.jpg") center center fixed;
     background-size:100% auto;
-    background-repeat:no-repeat;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)) url("https://laizone.net/images/bg.jpg") no-repeat fixed center center;
     color:white;
     position: absolute;
     justify-content:center;

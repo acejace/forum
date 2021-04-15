@@ -7,7 +7,7 @@ CREATE TABLE Users (
   is_admin Boolean DEFAULT FALSE,
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   img_profile_link VARCHAR(255),
-    PRIMARY KEY (id) ON UPDATE CASCADE
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Posts (

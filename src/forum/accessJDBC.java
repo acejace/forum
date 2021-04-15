@@ -1,7 +1,6 @@
 package forum;
 import java.io.File;
 import java.sql.*;
-import java.text.ParseException;
 import java.util.Scanner;
 
 public class accessJDBC {
