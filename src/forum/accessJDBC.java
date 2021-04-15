@@ -18,16 +18,17 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
+			//url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
+			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			uid = "fadmin";
+			pw = "lAiZoNeAdMiN97!";
 			
-			uid = "laizonen_fadmin";
-			pw = "FoRuMlOgInAdMiN360";
-	
 			System.out.println("Connecting to database.");
 			// Note: Must assign connection to instance variable as well as returning it
 			// back to the caller
 			con = DriverManager.getConnection(url, uid, pw);
 			connected = true;
+			createDatabaseTables("ddl/tables.ddl");
 			return con;
 		}
 		System.out.println("Already connected to database.");
@@ -88,7 +89,7 @@ public class accessJDBC {
 	 */
 	public String listAllUsers() throws SQLException {
 		StringBuilder output = new StringBuilder();
-		output.append("id, email, first_name, last_name, created_at, is_admin, img_profile_link");
+		output.append("id, email, first_name, last_name, created_at, img_profile_link");
 		String query = "SELECT id, email, first_name, last_name, created_at FROM Users";
 		// Use a PreparedStatement for this query.
 		// Traverse ResultSet and use StringBuilder.append() to add columns/rows
@@ -102,7 +103,7 @@ public class accessJDBC {
 			output.append(rs.getString("email")).append(", \t");
 			output.append(rs.getString("first_name")).append(", \t");
 			output.append(rs.getString("last_name")).append(", \t");
-			output.append(rs.getBoolean("is_admin")).append(", \t");
+			//output.output.append(rs.getBoolean("is_admin")).append(", \t");
 			output.append(rs.getString("img_profile_link")).append(", \t");
 			output.append(rs.getString("created_at"));
 
@@ -563,7 +564,7 @@ public class accessJDBC {
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		app.updateUserProfile("ttttte@hotmail.com","https://laizone.net/images/sexy_user.png");
+		if (app.checkEmail("acejace@hotmail.com")) System.out.println("true");;
 		app.close();
 		
 	}
