@@ -43,8 +43,8 @@ if (loginErrorMsg == null) loginErrorMsg = "";	%>
 			<p class="invalidInput"> <%=loginErrorMsg %></p>
 		</form>
 		</div>
-		</div>
 	</div>
+
 
 </body>
 
