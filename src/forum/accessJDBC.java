@@ -21,8 +21,8 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			//url = "jdbc:mysql://localhost:3306/forum_laizone";
-			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			url = "jdbc:mysql://localhost:3306/forum_laizone";
+			//url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -312,12 +312,13 @@ public class accessJDBC {
 	}
 	public boolean updatePostUpvote(int id, int val) {
 		try {
-			String update = String.format("UPDATE Posts SET postUpvotes=%d WHERE id=%d", val, id);
+			
+			String update = String.format("UPDATE Posts SET postUpvotes=%d WHERE postId=%d", val, id);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
-			//System.out.println("User successfully updated");
 			return true;
 		} catch (SQLException e) {
+			System.out.println("Post failed upvoted");
 			System.out.println(e);
 			return false;
 		}
@@ -497,7 +498,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getTopPosts() {
 		try {
-			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes,posted_at DESC";
+			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes DESC";
 			PreparedStatement pstmt = con.prepareStatement(query);
 			ResultSet rs = pstmt.executeQuery();
 			return rs;
@@ -648,7 +649,7 @@ public class accessJDBC {
 		accessJDBC app = new accessJDBC();
 		app.connect();
 		//System.out.println(app.listAllUsers());
-		app.updateUserAdmin(100012, true);
+		app.updatePostUpvote(100008, 1);
 		
 		app.close();
 		

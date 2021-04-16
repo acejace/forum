@@ -106,6 +106,7 @@ function showEditPost(editButton){
 	}
 }
 
+
 function logOut(){
 	window.location.href = "logout.jsp";
 }
@@ -222,6 +223,7 @@ document.addEventListener('click', function(event){
 	if (event.target.id =="showHideAllCommentsButton"){
 		hideAllComments();
 		}
+
 	if (event.target.classList.contains("showHideCommentButton")){
 		hideComment(event.target.parentElement.parentElement.parentElement);
 	}

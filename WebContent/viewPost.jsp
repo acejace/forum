@@ -56,6 +56,17 @@ session.setAttribute("subtitle", "currently viewing post");
 
 		<div class="post">
 			<div id="mainPost">
+			
+				<%if (session.getAttribute("loggedIn")!=null){ %>
+				<div class="alignTextLeft">
+				<form class="form" action="editPost.jsp">
+					<h2>Upvotes: <%=postUpvotes %></h2>
+					<input class="hidden" name="post_id" value='<%=post_id%>'>
+					<input class="hidden" name="upvote" value='<%=postUpvotes %>'>
+					<button type="submit" class="btn_one">+</button>
+				</form>
+				</div>
+				<%} %>
 				<h1 style="text-align: center; ">Title: <%=postName %></h1>
 				<% if (canEdit){ %>
 				<div>
