@@ -1,5 +1,8 @@
 package forum;
 import java.io.File;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -18,8 +21,8 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			//url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
 			url = "jdbc:mysql://localhost:3306/forum_laizone";
+			//url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -89,8 +92,8 @@ public class accessJDBC {
 	 */
 	public String listAllUsers() throws SQLException {
 		StringBuilder output = new StringBuilder();
-		output.append("id, email, first_name, last_name, created_at, img_profile_link");
-		String query = "SELECT id, email, first_name, last_name, created_at FROM Users";
+		output.append("id,\t password,\t email,\t first_name,\t last_name,\t is_admin,\t, img_profile_link, \t created_at");
+		String query = "SELECT id, password, email, first_name, last_name, created_at,img_profile_link,is_admin FROM Users";
 		// Use a PreparedStatement for this query.
 		// Traverse ResultSet and use StringBuilder.append() to add columns/rows
 		// to output string
@@ -100,11 +103,12 @@ public class accessJDBC {
 		while (rs.next()) {
 			output.append("\n");
 			output.append(rs.getString("id")).append(", \t");
+			output.append(rs.getString("password")).append(", \t");
 			output.append(rs.getString("email")).append(", \t");
 			output.append(rs.getString("first_name")).append(", \t");
 			output.append(rs.getString("last_name")).append(", \t");
-			//output.output.append(rs.getBoolean("is_admin")).append(", \t");
-			output.append(rs.getString("img_profile_link")).append(", \t");
+			output.append(rs.getBoolean("is_admin")).append(", \t");
+			//output.append(rs.getString("img_profile_link")).append(", \t");
 			output.append(rs.getString("created_at"));
 
 		}
@@ -145,7 +149,7 @@ public class accessJDBC {
 				String imgUrl = "http://laizone.net/images/default_user.png";
 				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ('%s','%s','%s','%s','%s')",
 						email.toLowerCase(),
-						password,
+						hashPassword(password),
 						last_name.toLowerCase(),
 						first_name.toLowerCase(),
 						imgUrl);
@@ -275,7 +279,7 @@ public class accessJDBC {
 	 * @return 
 	 */
 	public boolean updateUserPassword(String email, String newPassword) {
-		return updateUser(email, "password", newPassword);
+		return updateUser(email, "password", hashPassword(newPassword));
 	}
 	
 	/***
@@ -440,7 +444,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts() {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC");
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
@@ -472,7 +476,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts(int limit) {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC LIMIT %d", limit);
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC LIMIT %d", limit);
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
@@ -551,7 +555,7 @@ public class accessJDBC {
 		PreparedStatement pstmt = con.prepareStatement(query);
 		ResultSet rs = pstmt.executeQuery();
 		rs.next();
-		if (rs.getString("password").equals(password)) return true;
+		if (rs.getString("password").equals(hashPassword(password))) return true;
 		return false;}
 	catch (SQLException e) {
 		return false;
@@ -560,12 +564,27 @@ public class accessJDBC {
 		
 	}
 	//String email, String field, String newValue
+	private String hashPassword(String password) {
+		  String hashword = null;
+		  try {
+		    MessageDigest md5 = MessageDigest.getInstance("MD5");
+		    md5.update(password.getBytes());
+		    BigInteger hash = new BigInteger(1, md5.digest());
+		    hashword = hash.toString(16);
+		    	return hashword;
+		  } catch (NoSuchAlgorithmException nsae) {
+		    //Log exception}
+			  return hashword;
+		}
+	}
+	
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		if (app.checkEmail("acejace@hotmail.com")) System.out.println("true");;
+		System.out.println(app.listAllUsers());
 		app.close();
 		
 	}
 	
-}
+	
+	}

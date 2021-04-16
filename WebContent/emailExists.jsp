@@ -7,12 +7,22 @@
 <title>Email already exists</title>
 </head>
 <body>
-<div class="main">
+	<%
+	session.setAttribute("page", "home");
+	session.setAttribute("subtitle", "sign in failed");
+	%>
+	<div class="main">
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader">
+		<div id="cornerNav"> </div>
+		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
+	
+		<h1>Email already exists</h1>
+		<div>
+			<a href="login.jsp"> Click here to login</a>
 		</div>
-	<h1>Email already exists</h1>
-	<a href="login.jsp"> Click here to login</a>
-	<a href="signup.jsp"> Click here to register</a>
-</div>
+		<div>
+			<a href="signup.jsp"> Click here to register</a></div>
+		</div>
+	</div>
 </body>
 </html>
