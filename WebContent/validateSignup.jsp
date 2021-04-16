@@ -7,7 +7,9 @@
 		String first_name = request.getParameter("first_name").trim();
 		String last_name = request.getParameter("last_name").trim();
 		
-
+		if (password.length()<=5 ){
+			session.setAttribute("signupErrorMsg", "password too short, please try again");
+		}
 		
 		//if successfully registered then
 		if (app.registerUser(email,password,first_name, last_name)){

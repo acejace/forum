@@ -34,7 +34,7 @@
 	<table id="userprofile">
 		<tr>
 			<th>Profile Picture: </th>
-			<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'> </td>
+			<td><img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>' alt="user profile image"> </td>
 			<td> 
 				<form action="edit.jsp" class="form">
 					 <input type="hidden" name="edit" value="changeProfileImg">

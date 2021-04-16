@@ -70,6 +70,7 @@ body,html {
     font-family: 'Comfortaa', cursive;
     max-height: 30vh;
 }
+
 .subtitle {
     font-size:2.25vw;
     background-image: linear-gradient(to left, #FF416C 0%, #FF4B2B 100%);
@@ -334,7 +335,7 @@ body,html {
 
 .userImg {
 	max-width: 10%;
-	max-height: 10%;
+	max-height: 10%;	
 }
 
 .inputBox {
@@ -345,7 +346,10 @@ body,html {
 .inputBox[type="text"],.inputBox[type="password"]{
 	font-size: 1.5vw;
 }
-
+#mainlogo{
+	
+	
+}
 .main{
 	text-align: center;
 	width:100%;
@@ -353,7 +357,8 @@ body,html {
     height:120vh;
     align-items: center;
     background-size:100% auto;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)) url("https://laizone.net/images/bg.jpg") no-repeat fixed center center;
+    background:linear-gradient(0deg,rgba(0,0,0,1),rgba(0,0,0,0)),url("../images/bg.jpg") center center fixed;
+    background-repeat: no-repeat;
     color:white;
     position: absolute;
     justify-content:center;

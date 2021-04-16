@@ -31,9 +31,9 @@
 	%>
 
 	<div class="title">
-		<a href="https://laizone.net/"><img
-			src="https://laizone.net/images/logos/logo-laizone1.png"
-			style="max-height: 30vh; max-width: 40%;"> </a>
+		<a href="http://laizone.net/"><img
+			src="http://laizone.net/images/logo-laizone1.png"
+			style="max-height: 30vh; max-width: 40%;" alt="logo for Laizone"> </a>
 	</div>
 	<div id="subtitle">
 		<p style="color: white;"><%=session.getAttribute("subtitle")%></p>

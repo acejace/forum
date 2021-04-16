@@ -16,8 +16,11 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<%if (session.getAttribute("loggedIn") != null) response.sendRedirect("successfulLogin.jsp"); %>
-
+<% if (session.getAttribute("loggedIn")!=null) response.sendRedirect("userProfile.jsp");
+	session.setAttribute("page", "login");
+	session.setAttribute("subtitle", "Login Page!");
+	String signupErrorMsg= (String) session.getAttribute("signupFailed");
+	if (signupErrorMsg == null) signupErrorMsg = "";	%>
 	<div id="loading">
 		<div id="spinner"></div>
 	</div>
@@ -47,7 +50,7 @@
 				</div>
 
 			</form>
-			<p class="invalidInput"></p>
+			<p class="invalidInput"><%=signupErrorMsg %></p>
 		</div>
 	</div>
 </body>

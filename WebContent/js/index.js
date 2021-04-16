@@ -158,7 +158,7 @@ loadLimitPosts();
 loadComments();
 
 
-
+$(".main").css("background-size","100% auto");      
 //onscroll animation
 window.onscroll = function(){
 	if ((width >= 900)){

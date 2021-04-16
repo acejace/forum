@@ -28,7 +28,7 @@ public class accessJDBC {
 			// back to the caller
 			con = DriverManager.getConnection(url, uid, pw);
 			connected = true;
-			createDatabaseTables("ddl/tables.ddl");
+			//createDatabaseTables("ddl/tables.ddl");
 			return con;
 		}
 		System.out.println("Already connected to database.");
@@ -142,8 +142,7 @@ public class accessJDBC {
 	public boolean registerUser(String email, String password, String last_name, String first_name){
 		try {
 			if (checkEmail(email)) {
-				//INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ("ttttte@hotmail.com", "test", "Jace","Lai", "https://laizone.net/images/logos/logo-laizone1.png");
-				String imgUrl = "https://laizone.net/images/default_user.png";
+				String imgUrl = "http://laizone.net/images/default_user.png";
 				String insert = String.format("INSERT INTO Users(email,password,last_name,first_name, img_profile_link) VALUES ('%s','%s','%s','%s','%s')",
 						email.toLowerCase(),
 						password,
