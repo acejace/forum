@@ -5,25 +5,24 @@
 		try{
 			app.connect();
 			String email = (String) session.getAttribute("email");
-			String post_id = request.getParameter("post_id").trim();
+			String post_name = request.getParameter("post_name").trim();
 			String content = request.getParameter("content").trim();
-		
-		
-			//System.out.println(email);
-			System.out.println(content);
 			
 			//if successfully registered then
-			if (app.createPost(email, post_id, content)){
+			if (app.createPost(email, post_name, content)){
 				
 				request.setAttribute("comment_failed", true);
-				response.sendRedirect("viewPost.jsp?post_id="+post_id);
+				
+				response.sendRedirect("index.jsp");
 			}else{
 				app.close(); 
-
-				response.sendRedirect("viewPost.jsp?post_id="+post_id);
+				session.setAttribute("post_failed", null);
+				response.sendRedirect("createPost.jsp");
 			}
 		}catch (Exception e){
 			app.close(); 
+			System.out.println(e);
+			session.setAttribute("post_failed", null);
 			response.sendRedirect("index.jsp");
 		}
 	

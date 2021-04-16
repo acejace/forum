@@ -30,10 +30,10 @@
 	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
 			<img class="userImg"
 				src='<%=session.getAttribute("img_profile_link")%>'>
-			<p>
+			<h1>
 				Congratulations, <b><%=session.getAttribute("first_name")%>, </b> <b><%=session.getAttribute("last_name")%></b>
 				you have successfully logged in <br>
-			</p>
+			</h1>
 	</div>
 
 </body>

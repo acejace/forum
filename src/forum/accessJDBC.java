@@ -19,7 +19,7 @@ public class accessJDBC {
 	public Connection connect() throws SQLException {
 		if (connected == false) {
 			//url = "jdbc:mysql://162.241.244.55/laizonen_forum_website?serverTimezone=UTC";
-			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			url = "jdbc:mysql://localhost:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -440,7 +440,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts() {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC");
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC");
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
@@ -472,7 +472,7 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts(int limit) {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC LIMIT %d", limit);
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC LIMIT %d", limit);
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;

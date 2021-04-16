@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<title>Login</title>
+<title>Create post</title>
 <link rel="icon" href="/images/logos/logo-laizone1.png"
 	type="image/icon type">
 <link
@@ -16,22 +16,29 @@
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-	<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); %>
+			
+	<% if (session.getAttribute("loggedIn")==null) response.sendRedirect("login.jsp"); 
+	session.setAttribute("page", "create post");
+	session.setAttribute("subtitle", "creating post");
+	%>
 
-	<div id="cornerNav"> </div>
+	<div class="loading">
+		<div class="spinner"></div>
+	</div>
 	<div class="main">
-
-		<div class="loading">
-			<div class="spinner"></div>
-		</div>
-
-		<div class="animated slideInDown header"
-			style="animation-delay: 1.8s;" id="loadHeader"></div>
+		<div id="cornerNav"> </div>
+		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
 			
 		<div class="body">
 			<div class="post" id="mainPost">
-				<form class="form" onsubmit="return submitted()"
-					action="validatePost.jsp">
+			<%if (request.getAttribute("post_failed") == "true") {
+			%>
+			<p class="invalidInput"> Failed to post, please try again.</p>
+			<% } 
+			session.setAttribute("post_failed", null);
+			%>
+			
+				<form class="form" onsubmit="submitted()" action="validatePost.jsp">
 					<div class="inputBox">Post Name:</div>
 					<div class="inputBox">
 						<input type="text" name="post_name" id="post_name" value=""

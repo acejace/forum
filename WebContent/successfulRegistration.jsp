@@ -9,11 +9,11 @@
 <body>
 
 <img class="userImg" src= '<%=session.getAttribute("img_profile_link")%>'>
-<p> Congratulations, 
+<h1> Congratulations, 
 <%=session.getAttribute("first_name")%> your account has been successfully created. <br>
 Your login is :
 <%=session.getAttribute("email") %>
-</p>
+</h1>
 
 </body>
 </html>
