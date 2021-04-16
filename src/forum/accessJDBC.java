@@ -21,8 +21,8 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			//url = "jdbc:mysql://localhost:3306/forum_laizone";
-			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			url = "jdbc:mysql://localhost:3306/forum_laizone";
+			//url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -91,23 +91,12 @@ public class accessJDBC {
 	 * @throws SQLException
 	 */
 	public ResultSet listAllUsers() throws SQLException {
-		StringBuilder output = new StringBuilder();
-		
+				
 		String query = "SELECT id, password, email, first_name, last_name, created_at,img_profile_link,is_admin FROM Users";
 
 		PreparedStatement pstmt = con.prepareStatement(query);
 		ResultSet rs = pstmt.executeQuery();
-		while (rs.next()) {
-			output.append("\n");
-			output.append(rs.getString("id")).append(", \t");
-			output.append(rs.getString("email")).append(", \t");
-			output.append(rs.getString("first_name")).append(", \t");
-			output.append(rs.getString("last_name")).append(", \t");
-			output.append(rs.getBoolean("is_admin")).append(", \t");
-			output.append(rs.getString("img_profile_link")).append(", \t");
-			output.append(rs.getString("created_at"));
-
-		}
+		
 		return rs;
 	}
 	
@@ -284,9 +273,9 @@ public class accessJDBC {
 	 * @param newFirstName
 	 * @return 
 	 */
-	public boolean updateUserAdmin(String email, boolean is_admin) {
+	public boolean updateUserAdmin(int id, boolean is_admin) {
 		try {
-			String update = String.format("UPDATE Users SET is_admin=%s WHERE id=%s", is_admin, email);
+			String update = String.format("UPDATE Users SET is_admin=%s WHERE id=%d", is_admin, id);
 			PreparedStatement pstmt = con.prepareStatement(update);
 			pstmt.execute();
 			//System.out.println("User successfully updated");
@@ -296,6 +285,20 @@ public class accessJDBC {
 			return false;
 		}
 	}
+	
+	public boolean deleteUser(int id) {
+		try {
+			String update = String.format("DELETE FROM Users WHERE id=%d",id);
+			PreparedStatement pstmt = con.prepareStatement(update);
+			pstmt.execute();
+			//System.out.println("User successfully updated");
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	
 	
 	
 	/***
@@ -383,6 +386,21 @@ public class accessJDBC {
 	}
 	
 	/**
+	 * Returns true if user is admin.
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public Boolean getUserAdmin(int id) throws SQLException {
+		
+		String query = String.format("SELECT is_admin FROM Users WHERE id = %d", id);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+		boolean temp = rs.getBoolean("is_admin");
+		return temp;
+	}
+	/**
 	 * Returns a result set of all comments of the parent post.
 	 * @param postId
 	 * @return
@@ -397,6 +415,25 @@ public class accessJDBC {
 		}catch (SQLException e) {
 			System.out.println(e);
 			return null;
+		}
+	}
+	/**
+	 * Remove post from id and its comments.
+	 * @param id
+	 * @return
+	 */
+	public boolean removePost(int id) {
+		try {
+			String delete = String.format("DELETE FROM Posts WHERE postId=%d ", id);
+			PreparedStatement pstmt = con.prepareStatement(delete);
+			pstmt.execute();
+			delete = String.format("DELETE FROM Posts WHERE parentId =%d ", id);
+			pstmt.execute();
+
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
 		}
 	}
 	/***
@@ -587,6 +624,8 @@ public class accessJDBC {
 		accessJDBC app = new accessJDBC();
 		app.connect();
 		//System.out.println(app.listAllUsers());
+		app.updateUserAdmin(100012, true);
+		
 		app.close();
 		
 	}

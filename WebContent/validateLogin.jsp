@@ -11,6 +11,8 @@
 			session.setAttribute("first_name", app.getUserFirstName(email));
 			session.setAttribute("last_name",  app.getUserLastName(email));
 			session.setAttribute("img_profile_link",  app.getUserImg(email));
+			int id = app.getUserId(email);
+			if (app.getUserAdmin(id))session.setAttribute("is_admin",  app.getUserAdmin(id));
 			session.setAttribute("loggedIn", true);
 			session.setAttribute("loginFailed", null);
 			response.sendRedirect("successfulLogin.jsp");

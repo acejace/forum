@@ -135,6 +135,9 @@ var autoExpand = function (field) {
 var width = $(window).width(); 
 var height = $(window).height(); 
 
+function loadUsers(){
+	$("#loadUsers").load("loadAllUsers.jsp");
+}
 function loadPosts(){
 	$("#loadPosts").load("loadPosts.jsp");
 }
@@ -151,6 +154,7 @@ function loadCornerNav(){
 
 
 //load stuff
+loadUsers();
 loadCornerNav();
 loadHeader();
 loadPosts();
@@ -182,6 +186,9 @@ document.addEventListener('input', function (event) {
 document.addEventListener('click', function(event){
 	if (event.target.id == "backButton") {
 		goBack();
+	}
+	if (event.target.id == "adminButton") {
+		window.location.href = "admin.jsp";
 	}
 	if (event.target.id == "logOutButton") {
 		logOut();

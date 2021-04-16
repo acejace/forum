@@ -23,7 +23,7 @@ if (session.getAttribute("loggedIn")==null){
 	</div>
 	<% if (session.getAttribute("is_admin")!=null){
 	%>
-	<button id="adminButton" class="btn_one">back</button>		
+	<button id="adminButton" class="btn_one">Admin Page</button>		
 	<%} %>
 	
 	

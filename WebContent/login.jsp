@@ -13,6 +13,7 @@
 </head>
 <body>
 <% if (session.getAttribute("loggedIn")!=null) response.sendRedirect("userProfile.jsp");
+
 session.setAttribute("page", "login");
 session.setAttribute("subtitle", "Login Page!");
 String loginErrorMsg = (String) session.getAttribute("loginFailed");
