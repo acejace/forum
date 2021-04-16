@@ -6,14 +6,17 @@
 <head>
 
 <meta charset="ISO-8859-1">
-<title>User Profile</title>
+<title>Logged In</title>
 <link rel="icon" href="/images/logos/logo-laizone1.png" type="image/icon type">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" rel="stylesheet" />
 <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet" />
 <link href="css/index.css" rel="stylesheet" />
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
-
+<%
+session.setAttribute("page", "logged in");
+session.setAttribute("subtitle", "Welcome!!");
+%>
 
 <body>
 	<%	if (session.getAttribute("loggedIn") == null) {

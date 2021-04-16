@@ -26,22 +26,57 @@ session.setAttribute("subtitle", "currently viewing post");
 <%
 			app.connect();
 			int post_id = Integer.parseInt(request.getParameter("post_id"));	
+			String email = (String) session.getAttribute("email");
 			ResultSet rs = app.getPost(post_id);
 			rs.next();
+			int author_id = rs.getInt("userId");
 			int postUpvotes = rs.getInt("postUpvotes");
 			String postName = rs.getString("post_name");
 			String content = rs.getString("content");
 			rs = app.getPostComments(post_id);
-			app.close();
+			boolean canEdit =false;
+			if (session.getAttribute("loggedIn")!=null){
+				if ((session.getAttribute("is_admin")==null)){
+					canEdit= false;
+					if (author_id==app.getUserId(email)){
+						canEdit=true;
+					}
+				
+				} else{
+					canEdit=true;
+				}
+			}
+		
+			
+	
 %>
 	<div class="main">
 		<div id="cornerNav"> </div>
 		<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"> </div>
+
 		<div class="post">
 			<div id="mainPost">
 				<h1 style="text-align: center; ">Title: <%=postName %></h1>
-				
+				<% if (canEdit){ %>
 				<div>
+					<button type="submit" class="btn_three" id="showEditPost" value="edit">Edit Post:</button>
+				</div>
+		
+
+				<div class="hidden" id="editPost">
+					<form class="form" action="editPost.jsp">
+					<input class="hidden" name="post_id" value='<%=post_id%>'>
+						<div class="inputBox">
+							<textarea name="content" style="width: 80%"> <%=content %></textarea>
+						</div>
+						<div class="inputBox">
+							<button type="submit" class="btn_one">Edit</button>
+						</div>
+	
+					</form>
+				</div>
+				<% } %>
+				<div id="viewCurrentPost">
 					<%=content %>
 				</div>
 			</div>
@@ -79,6 +114,7 @@ session.setAttribute("subtitle", "currently viewing post");
 	</div>
 			
 	</div>
+	<%		app.close(); %>
 </body>
 <script src="js/index.js" type="text/javascript"></script>
 </html>

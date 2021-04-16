@@ -92,6 +92,20 @@ function hideTable(){
 	}
 	
 }
+function showEditPost(editButton){
+	console.log("this button value is " + editButton);
+	if (editButton.value=="edit"){
+		document.getElementById("editPost").classList.remove("hidden");
+		document.getElementById("viewCurrentPost").classList.add("hidden");
+		editButton.value=="";
+	}else{
+		console.log("hiding edit post");
+		document.getElementById("editPost").classList.add("hidden");
+		document.getElementById("viewCurrentPost").classList.remove("hidden");
+		editButton.value=="edit";
+	}
+}
+
 function logOut(){
 	window.location.href = "logout.jsp";
 }
@@ -198,6 +212,9 @@ document.addEventListener('click', function(event){
 	}
 	if (event.target.id =="logInButton"){
 		logIn();
+	}
+	if (event.target.id =="showEditPost"){
+		showEditPost(event.target);
 	}
 	if (event.target.id =="signUpButton"){
 		signUp();

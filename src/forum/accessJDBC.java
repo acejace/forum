@@ -21,8 +21,8 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			url = "jdbc:mysql://localhost:3306/forum_laizone";
-			//url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			//url = "jdbc:mysql://localhost:3306/forum_laizone";
+			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -298,8 +298,30 @@ public class accessJDBC {
 			return false;
 		}
 	}
-	
-	
+	public boolean editPostContent(int id,  String content) {
+		try {
+			String update = String.format("UPDATE Posts SET content='%s' WHERE postId=%d", content, id);
+			PreparedStatement pstmt = con.prepareStatement(update);
+			pstmt.execute();
+			//System.out.println("User successfully updated");
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
+	}
+	public boolean updatePostUpvote(int id, int val) {
+		try {
+			String update = String.format("UPDATE Posts SET postUpvotes=%d WHERE id=%d", val, id);
+			PreparedStatement pstmt = con.prepareStatement(update);
+			pstmt.execute();
+			//System.out.println("User successfully updated");
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
+		}
+	}
 	
 	/***
 	 * Gets User's id from email.
@@ -417,25 +439,7 @@ public class accessJDBC {
 			return null;
 		}
 	}
-	/**
-	 * Remove post from id and its comments.
-	 * @param id
-	 * @return
-	 */
-	public boolean removePost(int id) {
-		try {
-			String delete = String.format("DELETE FROM Posts WHERE postId=%d ", id);
-			PreparedStatement pstmt = con.prepareStatement(delete);
-			pstmt.execute();
-			delete = String.format("DELETE FROM Posts WHERE parentId =%d ", id);
-			pstmt.execute();
 
-			return true;
-		} catch (SQLException e) {
-			System.out.println(e);
-			return false;
-		}
-	}
 	/***
 	 * Returns a certain amount of posts.
 	 * @param postId
@@ -555,6 +559,7 @@ public class accessJDBC {
 		}
 	}
 	
+	
 	/**
 	 * Returns result set of number of most recent posts. Comments are not included.
 	 * @return
@@ -572,6 +577,25 @@ public class accessJDBC {
 		}catch (SQLException e) {
 			System.out.println(e);
 			return null;
+		}
+	}
+	/**
+	 * Remove post from id and its comments.
+	 * @param id
+	 * @return
+	 */
+	public boolean removePost(int id) {
+		try {
+			String delete = String.format("DELETE FROM Posts WHERE postId=%d ", id);
+			PreparedStatement pstmt = con.prepareStatement(delete);
+			pstmt.execute();
+			delete = String.format("DELETE FROM Posts WHERE parentId =%d ", id);
+			pstmt.execute();
+
+			return true;
+		} catch (SQLException e) {
+			System.out.println(e);
+			return false;
 		}
 	}
 	
