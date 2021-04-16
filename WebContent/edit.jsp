@@ -70,6 +70,13 @@
 					app.close();
 				} 
 			}
+			
+			if (edit.equals("password")){
+				if (app.updateUserPassword(email, val)){
+					response.sendRedirect("logout.jsp");
+					app.close();
+				} 
+			}
 	%>	
 		<div> There was an error changing your profile.</div>
 		<div> <button id="backButton"> Click here to go back</button></div>

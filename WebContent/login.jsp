@@ -15,8 +15,8 @@
 <% if (session.getAttribute("loggedIn")!=null) response.sendRedirect("userProfile.jsp");
 session.setAttribute("page", "login");
 session.setAttribute("subtitle", "Login Page!");
-String loginErrorMsg= (String) session.getAttribute("loginFailed");
-if (loginErrorMsg == null) loginErrorMsg = "";	%>
+String loginErrorMsg = (String) session.getAttribute("loginFailed");
+if (loginErrorMsg == null) session.setAttribute("loginFailed","");	%>
 <div class="main">
 	<div class="loading">
 		<div class="spinner"></div>

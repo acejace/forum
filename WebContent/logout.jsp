@@ -6,7 +6,7 @@ session.setAttribute("first_name", null);
 session.setAttribute("last_name",  null);
 session.setAttribute("img_profile_link", null);
 session.setAttribute("loggedIn", null);
-session.setAttribute("loginFailed", null);
+session.setAttribute("loginFailed", "successfully logged out");
 
 response.sendRedirect("login.jsp");
 %>

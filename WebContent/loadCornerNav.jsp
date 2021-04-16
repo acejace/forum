@@ -18,7 +18,15 @@ if (session.getAttribute("loggedIn")==null){
 	</div>
 	
 	<div id="rightDiv">
+	<div>
 	<button id="backButton" class="btn_two">back</button>
+	</div>
+	<% if (session.getAttribute("is_admin")!=null){
+	%>
+	<button id="adminButton" class="btn_one">back</button>		
+	<%} %>
+	
+	
 	</div>
 </div>
 <%

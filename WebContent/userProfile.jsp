@@ -76,6 +76,18 @@
 				<p style="font-size:0.5vw; text-align: left;">Note this will require you to login after the change</p>
 			</td>
 		</tr>
+		<tr>
+			<th>Password: </th>
+			<td></td>
+			<td>
+				<form action="edit.jsp" class="form">
+					 <input type="hidden" name="edit" value="password">
+					 <input type="text" id="value" name="value" placeholder="enter new email name" class="input">
+					 <button type="submit" class="editBtn">Edit</button>
+				</form>
+				<p style="font-size:0.5vw; text-align: left;">Note this will require you to login after the change</p>
+			</td>
+		</tr>
 	</table>
 	<div id="footer">
 	created by: Jace Lai

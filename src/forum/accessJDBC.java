@@ -21,8 +21,8 @@ public class accessJDBC {
 	 */
 	public Connection connect() throws SQLException {
 		if (connected == false) {
-			url = "jdbc:mysql://localhost:3306/forum_laizone";
-			//url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
+			//url = "jdbc:mysql://localhost:3306/forum_laizone";
+			url = "jdbc:mysql://159.203.23.150:3306/forum_laizone";
 			uid = "fadmin";
 			pw = "lAiZoNeAdMiN97!";
 			
@@ -90,29 +90,25 @@ public class accessJDBC {
 	 * @return
 	 * @throws SQLException
 	 */
-	public String listAllUsers() throws SQLException {
+	public ResultSet listAllUsers() throws SQLException {
 		StringBuilder output = new StringBuilder();
-		output.append("id,\t password,\t email,\t first_name,\t last_name,\t is_admin,\t, img_profile_link, \t created_at");
+		
 		String query = "SELECT id, password, email, first_name, last_name, created_at,img_profile_link,is_admin FROM Users";
-		// Use a PreparedStatement for this query.
-		// Traverse ResultSet and use StringBuilder.append() to add columns/rows
-		// to output string
 
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		while (rs.next()) {
 			output.append("\n");
 			output.append(rs.getString("id")).append(", \t");
-			output.append(rs.getString("password")).append(", \t");
 			output.append(rs.getString("email")).append(", \t");
 			output.append(rs.getString("first_name")).append(", \t");
 			output.append(rs.getString("last_name")).append(", \t");
 			output.append(rs.getBoolean("is_admin")).append(", \t");
-			//output.append(rs.getString("img_profile_link")).append(", \t");
+			output.append(rs.getString("img_profile_link")).append(", \t");
 			output.append(rs.getString("created_at"));
 
 		}
-		return output.toString();
+		return rs;
 	}
 	
 	
@@ -124,8 +120,8 @@ public class accessJDBC {
 	public boolean checkEmail(String email) {
 		try {
 			String query = String.format("SELECT * FROM Users WHERE email = '%s'", email.toLowerCase());
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			
 			return !rs.next();
 		} catch (SQLException e) {
@@ -311,8 +307,8 @@ public class accessJDBC {
 	public int getUserId(String email) {
 		try {
 		String query = String.format("SELECT id FROM Users WHERE email = '%s'", email.toLowerCase());
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		return rs.getInt("id");
 		}catch (SQLException e) {
@@ -329,8 +325,8 @@ public class accessJDBC {
 	public String getUserFirstName(String email) throws SQLException {
 		
 		String query = String.format("SELECT first_name FROM Users WHERE email = '%s'", email.toLowerCase());
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		String temp = rs.getString("first_name");
 		String capitlizedFirstLetter = temp.substring(0, 1).toUpperCase() + temp.substring(1);
@@ -346,8 +342,8 @@ public class accessJDBC {
 	 */
 	public String getUserLastName(String email) throws SQLException {
 		String query = String.format("SELECT last_name FROM Users WHERE email = '%s'", email.toLowerCase());
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		String temp = rs.getString("last_name");
 		String capitlizedFirstLetter = temp.substring(0, 1).toUpperCase() + temp.substring(1);
@@ -363,8 +359,8 @@ public class accessJDBC {
 	public String getUserImg(String email) throws SQLException {
 		
 		String query = String.format("SELECT img_profile_link FROM Users WHERE email = '%s'", email.toLowerCase());
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		String temp = rs.getString("img_profile_link");
 		return temp;
@@ -379,8 +375,8 @@ public class accessJDBC {
 	public String getUserImg(int id) throws SQLException {
 		
 		String query = String.format("SELECT img_profile_link FROM Users WHERE id = %d", id);
-		Statement stmt = con.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
+		PreparedStatement pstmt = con.prepareStatement(query);
+		ResultSet rs = pstmt.executeQuery();
 		rs.next();
 		String temp = rs.getString("img_profile_link");
 		return temp;
@@ -394,8 +390,8 @@ public class accessJDBC {
 	public ResultSet getPostComments(int postId) {
 		try {
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id = %d ORDER BY posted_at DESC", postId);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -412,8 +408,8 @@ public class accessJDBC {
 	public ResultSet getPostComments(int postId, int limit) {
 		try {
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id = %d ORDER BY posted_at DESC LIMIT %d", postId, limit);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -428,8 +424,8 @@ public class accessJDBC {
 	public ResultSet getAllPosts() {
 		try {
 			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -444,9 +440,9 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts() {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC");
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC");
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -460,9 +456,9 @@ public class accessJDBC {
 	 */
 	public ResultSet getTopPosts() {
 		try {
-			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes DESC";
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			String query = "SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes,posted_at DESC";
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -476,9 +472,9 @@ public class accessJDBC {
 	 */
 	public ResultSet getRecentPosts(int limit) {
 		try {
-			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at DESC LIMIT %d", limit);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY posted_at ASC LIMIT %d", limit);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -494,8 +490,8 @@ public class accessJDBC {
 	public ResultSet getTopPosts(int limit) {
 		try {
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE parent_id IS NULL ORDER BY postUpvotes DESC LIMIT %d", limit);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -512,8 +508,8 @@ public class accessJDBC {
 	public ResultSet getPost(int post_id) {
 		try {
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE postId = %d", post_id);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -532,8 +528,8 @@ public class accessJDBC {
 		try {
 			int user_id = getUserId(email);
 			String query = String.format("SELECT postId,postUpvotes,userId,post_name,posted_at,content FROM Posts WHERE user_id = %d", user_id);
-			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
 			return rs;
 			
 		}catch (SQLException e) {
@@ -563,7 +559,11 @@ public class accessJDBC {
 		
 		
 	}
-	//String email, String field, String newValue
+	/**
+	 * Returns a hashed value of the given string.
+	 * @param password
+	 * @return
+	 */
 	private String hashPassword(String password) {
 		  String hashword = null;
 		  try {
@@ -578,10 +578,15 @@ public class accessJDBC {
 		}
 	}
 	
+	/**
+	 * Used for testing.
+	 * @param args
+	 * @throws SQLException
+	 */
 	public static void main(String args[]) throws SQLException {
 		accessJDBC app = new accessJDBC();
 		app.connect();
-		System.out.println(app.listAllUsers());
+		//System.out.println(app.listAllUsers());
 		app.close();
 		
 	}
