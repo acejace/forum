@@ -2,7 +2,7 @@
 The  forum will allow registered users to engage in online discussions and unregistered users to view discussions similar to forums such as Reddit and HackerNews. The goal is to produce a similar type service that allows users to register, post discussions and make replies. The system will be required to support multiple users. Additionally, unregistered users must be able to view the content but will not be able to edit or rely. The forum needs to be updated in real time.
 
 
-** ## Features implemented**
+# ** Features implemented**
 
 ●	Posts on the website include activity date
 ●	Hot threads/Hot post tracking, posts on the site are shown by either most recent or by the number of upvotes on each post
