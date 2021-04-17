@@ -3,6 +3,7 @@ The  forum will allow registered users to engage in online discussions and unreg
 
 
 ** ## Features implemented**
+
 ●	Posts on the website include activity date
 ●	Hot threads/Hot post tracking, posts on the site are shown by either most recent or by the number of upvotes on each post
 ●	Accessibility for users and admin
@@ -50,5 +51,6 @@ The  forum will allow registered users to engage in online discussions and unreg
 ●	Appropriate error handling implemented
 
  ** ## High-level overview**
+ 
 At a high level, our website works together with many linked components to create full functionality. The website is dynamic. The web server will receive requests from the files in our git hub repository then these files will be retrieved, then sent to the client-side on the browser. Our website deals with a wide variety of functionalities. All the data imputed from users and posts on the website is stored in the tables.ddl folder. In order to run the website on your local machine, you must have apache tomcat installed. Attributes for the site such as email and admin are stored in the ddl table through the access JDBC.jsp folder, which allows editing of the user profile. Posts comments and user info are all retrieved through the server dynamically and stored in the database. Creating an account posting and commenting is all done through the server as well. This is all on the server-side. The code that runs in the browser is all client-side and works to improve the appearance and behavior of the user functionalities of the site. All of the stylings for the site can be found in the CSS folder which is found within the web content.
 
