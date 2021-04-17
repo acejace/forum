@@ -4,51 +4,51 @@ The  forum will allow registered users to engage in online discussions and unreg
 
 ## Features implemented
 
-●	Posts on the website include activity date
-●	Hot threads/Hot post tracking, posts on the site are shown by either most recent or by the number of upvotes on each post
-●	Accessibility for users and admin
-●	Use of MySQL for data storage
-●	Grouping and display of discussion topics
-●	We did not need to implement the bread crumb navigation strategy due to the fact that we have implemented back buttons on each page, the links will change based on which page the user is currently on.
-●	Pages are linked through navigation links on the top of the page header
-●	Page created for user validation, with hash password function
-●	Form entry for user registration created with profile image
-●	Navigation links underline when hovered over for navigation through pages on the website
-●	Titles of comments highlighted once they have been clicked on
-●	Form validation with JavaScript
-●	Responsive design implemented throughout each page of the website
-●	The site maintains its state-- once the user is logged in they remain logged in
-●	User account and information about posts and comments are stored in the database
-●	Asynchronous updates implemented through AJAX which was built into our load function through jquery, by reloading the relevant element every 10 seconds, placing the new updates into the JS
-●	Appropriate error handling implemented
-●	Security for data
-●	Server-side scripting
-●	Hand-styled layout with contextual menus
-●	2-3 column layout
-●	Appropriate design principles
-●	Fully functional admin page, admins can edit users, posts, and search
-●	Collapsable commenting to show or hide comments on posts
-●	Posts can only be edited by the author or admins of the site
-●	Ability to browse posts without being a registered user
-●	The website redirects if the user is not granted access 
+●	Posts on the website include activity date <br/>
+●	Hot threads/Hot post tracking, posts on the site are shown by either most recent or by the number of upvotes on each post <br/>
+●	Accessibility for users and admin <br/>
+●	Use of MySQL for data storage <br/>
+●	Grouping and display of discussion topics <br/>
+●	We did not need to implement the bread crumb navigation strategy due to the fact that we have implemented back buttons on each page, the links will change based on which page the user is currently on. <br/> 
+●	Pages are linked through navigation links on the top of the page header <br/>
+●	Page created for user validation, with hash password function <br/>
+●	Form entry for user registration created with profile image <br/>
+●	Navigation links underline when hovered over for navigation through pages on the website <br/>
+●	Titles of comments highlighted once they have been clicked on <br/>
+●	Form validation with JavaScript <br/>
+●	Responsive design implemented throughout each page of the website <br/>
+●	The site maintains its state-- once the user is logged in they remain logged in <br/>
+●	User account and information about posts and comments are stored in the database <br/>
+●	Asynchronous updates implemented through AJAX which was built into our load function through jquery, by reloading the relevant element every 10 seconds, placing the new updates into the JS <br/> 
+●	Appropriate error handling implemented <br/>
+●	Security for data <br/> 
+●	Server-side scripting <br/>
+●	Hand-styled layout with contextual menus <br/>
+●	2-3 column layout <br/>
+●	Appropriate design principles <br/>
+●	Fully functional admin page, admins can edit users, posts, and search <br/>
+●	Collapsable commenting to show or hide comments on posts <br/>
+●	Posts can only be edited by the author or admins of the site <br/>
+●	Ability to browse posts without being a registered user <br/>
+●	The website redirects if the user is not granted access  <br/>
 
 
 
 
 ## Preliminary Summary of server-side implemented functionality:
 
-●	We did not need to implement the bread crumb navigation strategy due to the fact that we have implemented back buttons on each page, the links will change based on which page the user is currently on.
-●	Pages are linked through navigation links on the top of the page header
-●	Page created for user validation, with hash password function
-●	Form entry for user registration created with profile image
-●	Navigation links underline when hovered over for navigation through pages on the website
-●	Titles of comments highlighted once they have been clicked on
-●	Form validation with JavaScript
-●	Responsive design implemented throughout each page of the website
-●	The site maintains its state-- once the user is logged in they remain logged in
-●	User account and information about posts and comments are stored in the database
-●	Asynchronous updates implemented through AJAX which was built into our load function through jquery, by reloading the relevant element every 10 seconds, placing the new updates into the JS
-●	Appropriate error handling implemented
+●	We did not need to implement the bread crumb navigation strategy due to the fact that we have implemented back buttons on each page, the links will change based on which page the user is currently on. <br/>
+●	Pages are linked through navigation links on the top of the page header <br/>
+●	Page created for user validation, with hash password function <br/> 
+●	Form entry for user registration created with profile image <br/>
+●	Navigation links underline when hovered over for navigation through pages on the website <br/>
+●	Titles of comments highlighted once they have been clicked on <br/>
+●	Form validation with JavaScript <br/>
+●	Responsive design implemented throughout each page of the website <br/>
+●	The site maintains its state-- once the user is logged in they remain logged in <br/>
+●	User account and information about posts and comments are stored in the database <br/>
+●	Asynchronous updates implemented through AJAX which was built into our load function through jquery, by reloading the relevant element every 10 seconds, placing the new updates into the JS <br/>
+●	Appropriate error handling implemented <br/>
 
  ## High-level overview
  
