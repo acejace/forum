@@ -8,6 +8,7 @@ Integer user_id = Integer.parseInt(request.getParameter("user_id"));
 app.connect();
 if (app.deleteUser(user_id)){
 	session.setAttribute("adminEdit", "true");
+	System.out.println("deleting user");
 	response.sendRedirect("admin.jsp");
 }
 

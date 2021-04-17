@@ -78,14 +78,14 @@ function hideTable(){
 	
 	//display recent posts
 	if (button.value =="top"){
-		elementTop.classList.remove("hidden");
-		elementRecent.classList.add("hidden");
+		elementTop.classList.add("hidden");
+		elementRecent.classList.remove("hidden");
 		button.value ="recent";
 		button.innerHTML = "Show Most Upvoted Posts";
 		h1Text.innerHTML = "displaying the most recent posts first";
 	} else{ //display top posts
-		elementTop.classList.add("hidden");
-		elementRecent.classList.remove("hidden");
+		elementTop.classList.remove("hidden");
+		elementRecent.classList.add("hidden");
 		button.value ="top";
 		button.innerHTML = "Show Most Recent Posts";
 		h1Text.innerHTML = "displaying the most upvoted posts first";
@@ -146,6 +146,45 @@ var autoExpand = function (field) {
 
 };
 
+function searchPost() {
+	  // Declare variables
+	  var input, filter, loadPosts, posts, txtValue;
+	  input = document.getElementById('postSearchBar');
+	  filter = input.value.toUpperCase();
+	  loadPosts = document.getElementById("loadPosts");
+
+	  posts = loadPosts.getElementsByClassName('postName');
+	  // Loop through all list items, and hide those who don't match the search query
+	  for (var i = 0; i < posts.length; i++) {
+		txtValue = posts[i].innerHTML;
+	    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	    	posts[i].parentElement.parentElement.parentElement.style.display = "";
+	    } else {
+	    	posts[i].parentElement.parentElement.parentElement.style.display = "none";
+	    }
+	  }
+	}
+function searchUsers() {
+	  // Declare variables
+	  var input, filter, loadPosts, users, txtValue;
+	  input = document.getElementById('userSearchBar');
+	  filter = input.value.toUpperCase();
+	  loadUsers = document.getElementById("loadUsers");
+
+	  users = loadUsers.getElementsByClassName('currTableUser');
+	  console.log(users);
+	  // Loop through all list items, and hide those who don't match the search query
+	  for (var i = 0; i < users.length; i++) {
+		txtValue = users[i].innerHTML;
+	    console.log(users[i]);
+	    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+	    	users[i].parentElement.style.display = "";
+	    } else {
+	    	users[i].parentElement.style.display = "none";
+	    }
+	  }
+	}
+	
 
 var width = $(window).width(); 
 var height = $(window).height(); 
@@ -222,11 +261,18 @@ document.addEventListener('click', function(event){
 	}
 	if (event.target.id =="showHideAllCommentsButton"){
 		hideAllComments();
-		}
-
+	}
+	if (event.target.classList.contains("deleteButton")){
+		//event.preventDefault();
+		event.target.parentElement.submit();
+	}
 	if (event.target.classList.contains("showHideCommentButton")){
 		hideComment(event.target.parentElement.parentElement.parentElement);
 	}
+	else{
+		console.log(event.target.constructor.name);
+	}
+
 },false);
 //loading icon
 

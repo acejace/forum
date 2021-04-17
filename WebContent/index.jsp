@@ -29,7 +29,9 @@ session.setAttribute("subtitle", "home of the anonymous forum");
 	<div class="body">
 			<div class="buttonHeader">
 			<button type="submit" class="btn_one" id="showPostOrder" value="top">Show Most Recent Posts</button>
-			
+			<div>
+			<input type="text" id="postSearchBar" onkeyup="searchPost()" placeholder="Search for post names..">
+			</div>
 			</div>
 			
 			<div class="post" id="loadLimitPosts">

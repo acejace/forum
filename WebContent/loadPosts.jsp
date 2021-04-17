@@ -29,7 +29,7 @@
 				<tr>
 					<td> <%=userId%></td>
 					<td> <%=postUpvotes%> </td>
-					<td class="clickable"><a href='<%=postLink%>'> <div><%=postName%></div></a>
+					<td class="clickable"><a href='<%=postLink%>'> <div class="postName"><%=postName%></div></a>
 					
 					</td>
 					<td> <%=posted_at%> </td>
@@ -64,7 +64,7 @@
 				<tr>
 					<td> <%=userId%></td>
 					<td> <%=postUpvotes%> </td>
-					<td class="clickable"><a href='<%=postLink%>'> <div><%=postName%></div></a>
+					<td class="clickable"><a href='<%=postLink%>'> <div class="postName"><%=postName%></div></a>
 					
 					</td>
 					<td> <%=posted_at%> </td>

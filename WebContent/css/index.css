@@ -91,7 +91,19 @@ body,html {
     font-size:2vw;
 }
 
-
+#postSearchBar, #userSearchBar {
+    width:46%;
+    margin:1% 0;
+    background:white;
+    border:2px solid rgba(255,255,255,0.5);
+    border-bottom:2px solid rgba(255,255,255,0.5);
+    padding:8px 10px;
+    font-family: 'Comfortaa', cursive;
+    font-size:1vw;
+    color: black;
+    transition:0.4s ease-in-out;
+   
+}
 .form {
     width:100%;
 }
@@ -107,6 +119,7 @@ body,html {
     transition:0.4s ease-in-out;
     color:#fff;
 }
+
 .form textarea {
     width:46%;
     margin:20px 1%;
@@ -220,7 +233,7 @@ body,html {
 	padding-left: 2%;
 	width: 100%;
 }
-.viewPosts{
+.viewPosts, .viewComments, .viewUsers{
 	margin: 0 auto;
 	width: 100%;
     border-collapse: collapse;
@@ -228,13 +241,7 @@ body,html {
     border: 2px solid white;
 	background: rgba(0, 0, 0, 0.7);
 }
-.viewComments{
-	margin: 0 auto;
-    border-collapse: collapse;
-	width: 100%;
-	border: 2px dotted white;
-	background: rgba(0, 0, 0, 0.7);
-}
+
 .btn_one {
     color:white;
     padding:10px 40px;

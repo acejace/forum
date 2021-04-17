@@ -36,6 +36,7 @@ if (session.getAttribute("adminEdit") == "true"){
 	<div id="cornerNav"> </div>
 	<div class="animated slideInDown header" style="animation-delay: 1.8s;" id="loadHeader"></div>
 	<div class="body">
+	<input type="text" id="userSearchBar" onkeyup="searchUsers()" placeholder="Search for user id/email/name..">
 		<div id="loadUsers">
 		
 		

@@ -24,7 +24,7 @@
 <% } else{ %>
 
 
-	<table class="viewComments ">
+	<table class="viewUsers ">
 		<tr>
 			<td>
 				User Id
@@ -70,16 +70,16 @@
 				user_created_at = rs.getString("created_at");		
 %>
 		<tr style="border-bottom: 3px solid white;">
-			<td>
+			<td class="currTableUser">
 				<%= user_id %>
 			</td>
-			<td>
+			<td class="currTableUser">
 				<%= user_email %>
 			</td>
-			<td>
+			<td class="currTableUser">
 				<%= user_first_name %>
 			</td>
-			<td>
+			<td class="currTableUser">
 				<%= user_last_name %>
 			</td>
 			<td>
@@ -92,11 +92,11 @@
 				<%= user_created_at %>
 			</td>
 			<td>
-				<form onsubmit="deleteUser.jsp">
-				<input type="hidden" name="user_id" value="<%=user_id%>">
-				<button type="submit" class="btn_two">Delete</button>
+				<form onsubmit="deleteUser.jsp" action="deleteUser.jsp">
+					<input type="hidden" name="user_id" value="<%=user_id%>">
+					<button type="submit" class="btn_two deleteButton">Delete</button>
 				</form>
-				<form onsubmit="updateUserAdmin.jsp">
+				<form onsubmit="updateUserAdmin.jsp" action="updateUserAdmin.jsp">
 				<input type="hidden" name="user_id" value="<%= user_id %>">
 				<input type="hidden" name="is_admin" value='<%= user_is_admin %>' >
 				<button type="submit" class="btn_two">Make/Revoke Admin</button>

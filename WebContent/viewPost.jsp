@@ -59,7 +59,7 @@ session.setAttribute("subtitle", "currently viewing post");
 			
 				<%if (session.getAttribute("loggedIn")!=null){ %>
 				<div class="alignTextLeft">
-				<form class="form" action="editPost.jsp">
+				<form class="form" action="upvotePost.jsp">
 					<h2>Upvotes: <%=postUpvotes %></h2>
 					<input class="hidden" name="post_id" value='<%=post_id%>'>
 					<input class="hidden" name="upvote" value='<%=postUpvotes %>'>
