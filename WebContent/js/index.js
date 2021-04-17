@@ -263,7 +263,9 @@ document.addEventListener('click', function(event){
 		hideAllComments();
 	}
 	if (event.target.classList.contains("deleteButton")){
-		//event.preventDefault();
+		event.target.parentElement.submit();
+	}
+	if (event.target.classList.contains("updateUserAdminButton")){
 		event.target.parentElement.submit();
 	}
 	if (event.target.classList.contains("showHideCommentButton")){

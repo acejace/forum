@@ -97,9 +97,9 @@
 					<button type="submit" class="btn_two deleteButton">Delete</button>
 				</form>
 				<form onsubmit="updateUserAdmin.jsp" action="updateUserAdmin.jsp">
-				<input type="hidden" name="user_id" value="<%= user_id %>">
-				<input type="hidden" name="is_admin" value='<%= user_is_admin %>' >
-				<button type="submit" class="btn_two">Make/Revoke Admin</button>
+					<input type="hidden" name="user_id" value="<%= user_id %>">
+					<input type="hidden" name="is_admin" value='<%= user_is_admin %>' >
+					<button type="submit" class="btn_two updateUserAdminButton">Make/Revoke Admin</button>
 				</form>
 			</td>
 		</tr>
